@@ -1,0 +1,56 @@
+<div class="container" *ngIf="state$ | async as state">
+  <div class="item">
+    <nb-checkbox class="pl-1" [checked]="state.isPinnedProperty" (change)="changeIsPinnedProperty($event.target.checked)">
+      {{ 'resources.isPinned' | translate }}
+    </nb-checkbox>
+  </div>
+  <hr class="m-0" />
+  
+  <div *ngIf="!state.isReadOnlySession" class="item add-object-sidebar-panel" (click)="openAddObjectSidebarPanel()">
+    <i class="eva eva-plus-square-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.create' | translate }}</span>
+  </div>
+
+  <div class="item existing-objects-sidebar-panel" (click)="openExistingObjectsSidebarPanel()">
+    <i class="eva eva-globe-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.objects' | translate }}</span>
+  </div>
+ 
+  <div class="item">
+    <i class="eva eva-grid-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.language' | translate }}</span>
+    <select id="languageSelect" class="form-control mr-2 language-select" [value]="currentLanguageCode" (change)="changeLanguage($event)">
+        <option value="en">EN</option>
+        <option value="ru">RU</option>
+        <option value="zh">ZH</option>
+        <option value="jp">JP</option>
+      </select>
+  </div>
+ 
+  <div class="item admin-tab" (click)="openAdminTab()">
+    <i class="eva eva-settings-2-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.settings' | translate }} & {{ 'resources.account' | translate }}</span>
+  </div>
+
+  <div class="item print-tab" (click)="openPrintTab()" *ngIf="isPrintableObject()">
+    <i class="eva eva-printer-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.print' | translate }}</span>
+  </div>
+
+  <div class="item" (click)="openProfileTab(state.authenticatedUser)">
+    <i class="eva eva-person-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.profile' | translate }}</span>
+  </div>
+
+  <div class="item logOut" (click)="logOut()">
+    <i class="eva eva-log-out-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.logOut' | translate }}</span>
+  </div>
+  <div class="item">
+    <nb-checkbox [checked]="state.isReadOnlySession" (change)="changeIsReadOnlySession($event.target.checked)">
+      {{ 'resources.isReadonlySession' | translate }}
+    </nb-checkbox>
+  </div>
+  <hr />
+  <dfm-user-info></dfm-user-info>
+</div>

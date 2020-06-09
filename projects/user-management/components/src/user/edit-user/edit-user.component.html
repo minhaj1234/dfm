@@ -1,0 +1,71 @@
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <core-edit-multiple-lines-control
+      id="firstName" 
+      formControlName="firstName"
+      [isRichEditor]="false"
+      [maxTextLength]="MaxTextLengthCategory.ShortText"
+      [isReadOnly]="!isAdmin() && !isCurrentUser()">
+    </core-edit-multiple-lines-control>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <core-edit-multiple-lines-control
+      id="lastName" formControlName="lastName"
+      [isRichEditor]="false"
+      [maxTextLength]="MaxTextLengthCategory.LongText"
+      [isReadOnly]="!isAdmin() && !isCurrentUser()">
+    </core-edit-multiple-lines-control>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <core-edit-multiple-lines-control
+      id="email" 
+      formControlName="email"
+      [isRichEditor]="false"
+      [maxTextLength]="MaxTextLengthCategory.ShortText"
+      [isReadOnly]="!isAdmin()"
+      [isSingleLine]="true">
+    </core-edit-multiple-lines-control>
+  </div>
+
+  <div *ngIf="changePasswordFormState$ | async as state">
+    <user-management-change-password 
+      *ngIf="isCurrentUser()"
+      [formState]="state"
+      (changePassword)="onPasswordChanged($event)"
+      (openForm)="onOpenForm()"
+      (closeForm)="onCloseForm()">
+    </user-management-change-password> 
+  </div>
+
+  <div class="form-group">
+    <label for="picture">Picture url</label>
+    <core-edit-multiple-lines-control
+      id="picture" 
+      formControlName="picture"
+      [isRichEditor]="false"
+      [maxTextLength]="MaxTextLengthCategory.ShortText"
+      [isReadOnly]="!isCurrentUser()"
+      [isSingleLine]="true">
+    </core-edit-multiple-lines-control>
+  </div>
+
+  <div class="text-center">
+    <img class="profile-pic" [src]="getPictureToPreview()" [width]="WIDTH_PICTURE_PREVIEW" />
+  </div>
+
+  <div class="form-group text-center mt-2">
+    <span>Default tag - </span>
+    <core-tag *ngIf="editObject && editObject.defaultTag; else notSetDefaultTag"
+      [id]="editObject.defaultTag.id"
+      [text]="editObject.defaultTag.name">
+    </core-tag>
+    <ng-template #notSetDefaultTag>
+      <span>Not set</span>
+    </ng-template>
+  </div>
+</form>

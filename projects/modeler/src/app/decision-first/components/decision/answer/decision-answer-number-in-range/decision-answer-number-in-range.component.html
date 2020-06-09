@@ -1,0 +1,14 @@
+<div [formGroup]="answerForm" class="answer-number-in-range-container">
+  <div class="form-group">
+    <label for="minimumNumber">{{ 'resources.min' | translate }}</label>
+    <input type="number" id="minimumNumber" class="form-control" formControlName="minimumNumber" (input)="callNumberInRangeValidators()">
+  </div>
+  <div class="form-group">
+    <label for="maximumNumber">{{ 'resources.max' | translate }}</label>
+    <input type="number" id="maximumNumber" class="form-control" formControlName="maximumNumber" (input)="callNumberInRangeValidators()">
+  </div>
+  <div class="form-group">
+    <label for="defaultNumber">{{ 'resources.default' | translate }}</label>
+    <input type="number" id="defaultNumber" class="form-control" formControlName="defaultNumber" (input)="callNumberInRangeValidators()">
+  </div>
+</div>

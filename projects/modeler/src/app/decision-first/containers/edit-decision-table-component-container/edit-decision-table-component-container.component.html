@@ -1,0 +1,7 @@
+<nb-card class="h-100">
+  <div class="no-margin tab-container h-100" #editDecisionTabContainer *ngIf="state$ | async as state">
+    <dfm-decision-implementation-table-container (expand)="expandDecisionTable()" [isReadOnly]="state.isReadOnlySession"
+      [decision]="state.decision" [tableContainer]="tabContainer">
+    </dfm-decision-implementation-table-container>
+  </div>
+</nb-card>

@@ -1,0 +1,9 @@
+<label for="url">{{ 'resources.url' | translate }}</label>
+<div class="input-group mb-3">
+  <input type="text" id="url" class="form-control" [value]="url" (input)="onChangeUrl($event.target.value)" [disabled]="isReadOnly" />
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary btn-url" (click)="openUrl($event.target)" [disabled]="!isCorrectUrl">
+      {{ 'resources.open' | translate }}
+    </button>
+  </div>
+</div>

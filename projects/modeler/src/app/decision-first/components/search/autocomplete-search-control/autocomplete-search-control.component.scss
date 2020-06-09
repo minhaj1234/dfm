@@ -1,0 +1,13 @@
+:host {
+  min-width: 250px;
+  width: 250px;
+}
+
+:host ::ng-deep .search-list {
+  width: 250px;
+  position: absolute;
+  z-index: 2;
+  -webkit-box-shadow: 2px 2px 3px 3px #ccc;
+  -moz-box-shadow: 2px 2px 3px 3px #ccc;
+  box-shadow: 2px 2px 3px 3px #ccc;
+}

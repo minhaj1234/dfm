@@ -1,0 +1,8 @@
+<nb-card class="h-100">
+  <div *ngIf="state$ | async as state">
+   <div class="container col-md-5 center-block tab-item">
+    <core-edit-version-information [versionInformation]="state">
+    </core-edit-version-information>
+   </div>
+  </div>
+</nb-card>

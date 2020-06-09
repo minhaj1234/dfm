@@ -1,0 +1,15 @@
+<div class="mb-3">
+   <div>
+    <form [formGroup]="editIconForm">
+      <div class="form-container col-6 mb-2">
+        <label>{{ 'resources.name' | translate }}</label>
+        <input type="text" formControlName="name" name="iconName" class="form-control icon-name mr-1 mt-1 mb-2" autocomplete="off">
+
+        <label>{{ 'resources.tooltip' | translate }}</label>
+        <input type="text" formControlName="tooltip" name="tooltip" class="form-control icon-tooltip mr-1 mt-1" autocomplete="off">
+
+        <nb-checkbox formControlName="isDefault">{{ 'resources.default' | translate }}</nb-checkbox>
+      </div>
+    </form>
+  </div>
+</div>

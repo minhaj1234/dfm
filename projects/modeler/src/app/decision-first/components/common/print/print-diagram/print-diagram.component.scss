@@ -1,0 +1,23 @@
+.print-diagram-container {
+  padding-left: 40px;
+}
+
+.diagram-image {
+  display: flex;
+  justify-content: center;
+}
+
+.center-heading {
+  text-align: center;
+}
+
+::ng-deep svg {
+  max-width: 700px;
+  max-height: 500px;
+}
+
+:host ::ng-deep {
+  * {
+    color: #000 !important;
+  }
+}

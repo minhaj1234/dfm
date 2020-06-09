@@ -1,0 +1,23 @@
+<div #divRelationObjectDisplay>
+  {{ caption }}
+  <div [ngClass]="{'dfm-objects-container': !isReadOnly}" class="mt-3 mb-3" droppable [dropScope]="isAddAllowed" [dragHintClass]="'draggable-to'"
+    [dragOverClass]="'draggable-over'" (onDrop)="add($event.dragData)">
+    <div class="chips-list">
+      <ng-container *ngIf="isRelationObjectArray(); else singleObject">
+        <dfm-preview-container [to]="dfmObject" *ngFor="let dfmObject of dfmObjectsList"> 
+          <dfm-relation-object-chip  [dfmObject]="dfmObject" [removeAction]="removeAction"
+            [isReadOnly]="isReadOnly" [to]="to" [relationObjectsKey]="relationObjectsKey">
+          </dfm-relation-object-chip>
+        </dfm-preview-container>
+      </ng-container>
+      <ng-template #singleObject>
+        <dfm-relation-object-chip [dfmObject]="dfmSingleObject" [removeAction]="removeAction" [isReadOnly]="isReadOnly"
+          [to]="to" [relationObjectsKey]="relationObjectsKey">
+        </dfm-relation-object-chip>
+      </ng-template>
+      <dfm-autocomplete-relation-objects *ngIf="isCanAdd()" [to]="to" [acceptType]="acceptsType" [addAction]="addAction"
+        [relationObjectsKey]="relationObjectsKey" (updateDataInAutocompleteSearchList)="updateDataInAutocompleteSearchList()">
+      </dfm-autocomplete-relation-objects>
+    </div>
+  </div>
+</div>

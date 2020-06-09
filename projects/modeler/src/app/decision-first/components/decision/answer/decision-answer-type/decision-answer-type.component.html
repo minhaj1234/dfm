@@ -1,0 +1,11 @@
+<div [formGroup]="answerForm">
+  <div class="form-group">
+    <select class="form-control" formControlName="answerTypeId">
+      <option *ngFor="let answerType of answerTypes" [ngValue]="answerType.value">{{ answerType.label | translate }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <nb-checkbox formControlName="isCollection">{{ 'resources.isCollection' | translate }}</nb-checkbox>
+  </div>
+</div>

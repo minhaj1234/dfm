@@ -1,0 +1,18 @@
+<div class="container" *ngIf="state$ | async as state">
+  <div class="item add-customer-link" (click)="showDialogAddCustomer()">
+    <i class="eva eva-person-add-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.create' | translate }}</span>
+  </div>
+  <div class="item icons-link" *ngIf="state.isSuperAdmin" (click)="openImplementationComponentIcons()">
+    <i class="eva eva-image-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.implementationComponentIcons' | translate }}</span>
+  </div>
+  <div class="item version-information-link" *ngIf="state.isSuperAdmin" (click)="openVersionInformation()">
+    <i class="eva eva-edit-2-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.versionInformation' | translate }}</span>
+  </div>
+  <div class="item log-out-link" (click)="logOut()">
+    <i class="eva eva-log-out-outline item-icon"></i>
+    <span class="item-text">{{ 'resources.logOut' | translate }}</span>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="comment-editor-container mt-3" [formGroup]="commentForm">
+  <core-edit-multiple-lines-control id="comment" formControlName="comment" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+  <div class="send-button-container">
+    <button class="btn btn-outline-secondary mt-2" [disabled]="!commentForm.valid" (click)="sendComment()">
+      {{ 'resources.send' | translate }}
+    </button>
+  </div>
+</div>
+<hr />

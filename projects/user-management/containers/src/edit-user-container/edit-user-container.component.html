@@ -1,0 +1,32 @@
+<nb-card class="h-100 mb-0">
+  <div>
+    <div class="container col-md-5 center-block tab-item" *ngIf="state$ | async as state">
+      <user-management-edit-user
+        [editObject]="state.user"
+        [updateAction]="options.updateUserAction"
+        [changePasswordAction]="options.changePasswordAction"
+        [getChangePasswordFormStateSelector]="options.getChangePasswordFormStateSelector"
+        [openChangePasswordFormAction]="options.openChangePasswordFormAction"
+        [closeChangePasswordFormAction]="options.closeChangePasswordFormAction"
+        [debounceTime]="options.debounceTime"
+        [authenticatedUser]="state.authenticatedUser">
+      </user-management-edit-user>
+      <user-management-groups-table
+        *ngIf="state.user && state.user.groups"
+        [groups]="state.user.groups"
+        [userId]="userId"
+        [customerId]="getCustomerId(state.user)"
+        [addTabAction]="options.addTabAction"
+        [addGroupAction]="options.addGroupAction"
+        [addGroupsToUserAction]="options.addGroupsToUserAction"
+        [removeGroupFromUserAction]="options.removeGroupFromUserAction"
+        [getAutocompleteSearchListSelector]="options.getAutocompleteSearchListSelector"
+        [loadGroupsToAutocompleteSearchListAction]="options.loadGroupsToAutocompleteSearchListAction"
+        [setAutocompleteSearchListInitialStateAction]="options.setAutocompleteSearchListInitialStateAction"
+        [isReadOnly]="!isAdmin(state.authenticatedUser)"
+        [searchDebounceTime]="options.searchDebounceTime"
+        [autocompleteListPageSize]="options.autocompleteListPageSize">
+      </user-management-groups-table>
+    </div>
+  </div>
+</nb-card>

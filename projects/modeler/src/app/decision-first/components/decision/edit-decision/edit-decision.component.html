@@ -1,0 +1,37 @@
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label for="decisionName">{{ 'resources.name' | translate }}</label>
+    <core-edit-multiple-lines-control id="decisionName" formControlName="name" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+  </div>
+
+  <div class="form-group">
+    <label for="decisionDescription">{{ 'resources.description' | translate }}</label>
+    <core-edit-multiple-lines-control id="decisionDescription" formControlName="description" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+  </div>
+
+  <core-object-tags
+    [addTabAction]="fromModelerStore.AddTab"
+    [tags]="editObject.tags"
+    *ngIf="editObject">
+  </core-object-tags>
+
+  <div class="form-group">
+    <label for="type">{{ 'resources.type' | translate }}</label>
+    <select id="type" class="form-control" formControlName="type">
+      <option value="{{ decisionType }}" *ngFor="let decisionType of getDecisionTypeValues">
+        {{ getI18nNameDecisionType(decisionType.toLowerCase()) | translate }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="statusLevel">{{ 'resources.statusLevel' | translate }}</label>
+    <select id="statusLevel" class="form-control" formControlName="statusLevel">
+      <option value="{{ decisionStatusLevel }}" *ngFor="let decisionStatusLevel of getDecisionStatusLevelValues">
+        {{ getI18nNameDecisionStatusLevel(decisionStatusLevel.toLowerCase()) | translate }}
+      </option>
+    </select>
+  </div>
+
+  <core-input-url formControlName="url"></core-input-url>
+</form>

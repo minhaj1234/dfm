@@ -1,0 +1,47 @@
+<div class="display-diagram-container">
+  <div #diagramDiv class="diagramDiv"></div>
+  <nav id="contextMenu" #contextMenu>
+    <ul>
+      <li id="editRequirementsNetwork" #editRequirementsNetwork (mouseover)="getRequirementNetworkForPreview()"
+        (click)="onClickEditRequirementsNetwork()">
+        <span>{{ 'resources.viewRequirementsNetwork' | translate }}</span></li>
+      <li id="editDecisionTable" #editDecisionTable (click)="onClickEditDecisionTable()">
+        <span>{{ 'resources.editDecisionTable' | translate }}</span></li>
+      <li id="graphableTabContextMenuItem" #graphableTabContextMenuItem (click)="onClickGraphableTabContextMenuItem()">
+        <span>{{ 'resources.openProperties' | translate }}</span>
+      </li>
+      <li id="alignContextMenuItem" #alignContextMenuItem class="dropdown">
+        <span>{{ 'resources.align' | translate }}</span>
+        <ul class="dropdown-content">
+          <li id="alignLeftContextMenuItem" (click)="onClickAlignLeftContextMenuItem()">
+            <span>{{ 'resources.alignLeft' | translate }}</span></li>
+          <li id="alignRightContextMenuItem" (click)="onClickAlignRightContextMenuItem()">
+            <span>{{ 'resources.alignRight' | translate }}</span></li>
+          <li id="alignTopContextMenuItem" (click)="onClickAlignTopContextMenuItem()">
+            <span>{{ 'resources.alignTop' | translate }}</span></li>
+          <li id="alignBottomContextMenuItem" (click)="onClickAlignBottomContextMenuItem()">
+            <span>{{ 'resources.alignBottom' | translate }}</span></li>
+        </ul>
+      </li>
+      <li id="implementationComponentContextMenuItem"
+        *ngFor="let implementationComponent of implementationComponentContextMenuItems"
+        (click)="onClickImplementationComponentContextMenuItem(implementationComponent.url)">
+        <span>Edit <img src="../../../../../assets/images/implementation-icon.png" />
+          {{ implementationComponent.name }}</span>
+      </li>
+      <li id="relatedDiagram" #relatedDiagrams (mouseover)="onHoverShowRelatedDiagram()" class="dropdown">
+        <span>{{ 'resources.relatedDiagrams' | translate }}<i class="eva eva-arrow-right item-icon"></i></span>
+        <ul class="dropdown-content">
+          <li *ngFor="let relatedDiagramsList of relatedDiagramsList" (click)="onClickOpenDiagram(relatedDiagramsList)">
+            <dfm-preview-container [to]="relatedDiagramsList"><span>{{ relatedDiagramsList.name }} </span>
+            </dfm-preview-container>
+          </li>
+        </ul>
+      </li>
+      <li id="showMissingContextMenuItem" #showMissingContextMenuItem (click)="onClickShowMissingContextMenuItem()">
+        <span>{{ 'resources.showMissing' | translate }}</span></li>
+      <li id="deleteContextMenuItem" #permanentDeleteContextMenuItem (click)="onClickPermanentDeleteContextMenuItem()">
+        <span>{{ 'resources.permanently' | translate }}<i class="eva eva-trash-2 item-icon"></i></span></li>
+    </ul>
+  </nav>
+</div>

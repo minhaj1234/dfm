@@ -1,0 +1,6 @@
+<form [formGroup]="sketchForm">
+  <div class="form-group">
+    <label for="description">{{ 'resources.note' | translate }}</label>
+    <core-edit-multiple-lines-control id="description" formControlName="description" [rows]="3" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+  </div>
+</form>

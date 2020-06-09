@@ -1,0 +1,5 @@
+<div class="upload-file-container">
+  <label for="file" *ngIf="!fileToUpload">{{ 'resources.chooseFile' | translate }}</label>
+  <label class="file-name" for="file" *ngIf="fileToUpload">{{ fileToUpload.name }}</label>
+  <input type="file" id="file" [accept]="accept" hidden (change)="onFileSelected($event.target.files)">
+</div>

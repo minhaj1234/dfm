@@ -1,0 +1,2 @@
+export const DEFAULT_COUNT_SHIFT_MONTHS = 12;
+export const DEFAULT_NUMBER_OF_USERS = 3;

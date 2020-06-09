@@ -1,0 +1,33 @@
+<nb-card>
+  <div class="row edit-graphable-container no-margin" *ngIf="state$ | async as state">
+    <div class="jump-menu col-md-3">
+      <dfm-jump-menu [object]="state.implementationComponent" [anchors]="anchors"></dfm-jump-menu>
+    </div>
+    <div class="col-md-6 center-block tab-item">
+      <div class="mb-1" #basicDetailsAnchor><h5>{{ 'resources.basicDetails' | translate }}</h5></div>
+      <dfm-edit-implementation-component [editObject]="state.implementationComponent" [isReadOnly]="state.isReadOnlySession">
+      </dfm-edit-implementation-component>
+      <dfm-relation-objects-display
+        caption="{{ 'resources.decisions' | translate }}"
+        [addAction]="fromModelerStore.AddRelatedObjectToImplementationComponent"
+        [removeAction]="fromModelerStore.RemoveRelatedObjectFromImplementationComponent"
+        [to]="state.implementationComponent"
+        acceptsType="Decision"
+        relationObjectsKey="decisions"
+        [isReadOnly]="state.isReadOnlySession">
+      </dfm-relation-objects-display>
+
+      <div #commentsAnchor>
+        <dfm-comments-container 
+          *ngIf="state.implementationComponent"
+          [addAction]="fromModelerStore.AddRelatedObjectToImplementationComponent" 
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromImplementationComponent" 
+          [object]="state.implementationComponent" 
+          [comments]="state.implementationComponent.comments"
+          [authenticatedUser]="state.authenticatedUser"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-comments-container>
+      </div>
+    </div>
+  </div>
+</nb-card>

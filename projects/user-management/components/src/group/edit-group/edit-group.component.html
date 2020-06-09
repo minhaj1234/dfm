@@ -1,0 +1,20 @@
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <core-edit-multiple-lines-control id="name" formControlName="name" [isRichEditor]="false"
+      [maxTextLength]="MaxTextLengthCategory.ShortText">
+    </core-edit-multiple-lines-control>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <core-edit-multiple-lines-control id="description" formControlName="description" [isRichEditor]="false"
+      [maxTextLength]="MaxTextLengthCategory.LongText">
+    </core-edit-multiple-lines-control>
+  </div>
+
+  <div class="text-center" *ngIf="isVisibleTagList()">
+    <label>Tag List</label>
+    <core-object-tags [tags]="editObject.tags"></core-object-tags>
+  </div>
+</form>

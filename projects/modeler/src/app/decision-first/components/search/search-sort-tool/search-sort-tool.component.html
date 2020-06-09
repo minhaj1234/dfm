@@ -1,0 +1,15 @@
+<div class="form-inline">
+  <div class="form-group">
+    <label for="sortBy" class="font-weight-bold">{{ 'resources.sortBy' | translate }}</label>
+    <select
+      class="form-control ml-3 select-sort"
+      id="sortBy"
+      [(ngModel)]="currentSearchSort"
+      (ngModelChange)="changeSortItem()"
+    >
+      <option *ngFor="let searchSort of searchSortItems" id="sort-item-{{ searchSort }}" [value]="searchSort">{{
+        getI18nSearchSortItem(searchSort) | translate
+      }}</option>
+    </select>
+  </div>
+</div>

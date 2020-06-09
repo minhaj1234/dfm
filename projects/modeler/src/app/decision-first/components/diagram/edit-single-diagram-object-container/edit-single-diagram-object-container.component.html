@@ -1,0 +1,21 @@
+<div class="edit-single-diagram-object-container pl-3 pr-2 pt-4" *ngIf="state$ | async as state">
+  <div class="edit-single-diagram-object-title-container mb-3">
+    <span class="edit-single-diagram-object-title">{{ objectName }}</span>
+    <i class="eva eva-close-outline" (click)="closeEditorContainer()"></i>
+  </div>
+  <div *ngIf="checkIsGraphable(selectedObject)">
+    <dfm-edit-graphable [graphable]="selectedObject.data" [isReadOnly]="isReadOnly"></dfm-edit-graphable>
+    <div *ngIf="checkIsDecision(selectedObject)">
+      <dfm-diagram-implementation-components 
+        [implementationComponents]="selectedObject.data.implementationComponents"
+        [icons]="state.icons">
+      </dfm-diagram-implementation-components>
+      <dfm-question-and-answers [decision]="selectedObject.data" [isReadOnly]="isReadOnly"></dfm-question-and-answers>
+    </div>
+  </div>
+
+  <div *ngIf="checkIsSketch(selectedObject)">
+    <h4 class="text-center">{{ 'resources.object' | translate }}</h4>
+    <dfm-edit-sketch [selectedObject]="selectedObject" [diagram]="diagram"></dfm-edit-sketch>
+  </div>
+</div>

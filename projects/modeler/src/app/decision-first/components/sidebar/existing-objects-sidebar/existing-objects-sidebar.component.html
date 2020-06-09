@@ -1,0 +1,83 @@
+<div class="header">
+  <span class="header-text">{{ 'resources.objects' | translate }}</span>
+  <i class="eva eva-close-outline header-icon" (click)="openNavigationSidebarPanel()"></i>
+</div>
+<div class="search-control">
+  <dfm-autocomplete-search-control></dfm-autocomplete-search-control>
+</div>
+<div *ngIf="{ isReadOnlySession : isReadOnlySession$ | async } as state">
+  <nb-accordion>
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.diagrams' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-diagrams-list [objectsList]="diagramsList$ | async" [isReadOnly]="state.isReadOnlySession"></dfm-diagrams-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.decisions' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-decisions-list [objectsList]="decisionsList$ | async" [isReadOnly]="state.isReadOnlySession"></dfm-decisions-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.inputData' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-input-data-list [objectsList]="inputDataList$ | async" [isReadOnly]="state.isReadOnlySession"></dfm-input-data-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.knowledgeSources' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-knowledge-sources-list [objectsList]="knowledgeSourcesList$ | async" [isReadOnly]="state.isReadOnlySession">
+        </dfm-knowledge-sources-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.organizations' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-organizations-list [objectsList]="organizationsList$ | async" [isReadOnly]="state.isReadOnlySession"></dfm-organizations-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.businessObjectives' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-business-objectives-list [objectsList]="businessObjectivesList$ | async" [isReadOnly]="state.isReadOnlySession">
+        </dfm-business-objectives-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.processes' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-processes-list [objectsList]="processesList$ | async" [isReadOnly]="state.isReadOnlySession"></dfm-processes-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.events' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-events-list [objectsList]="eventsList$ | async" [isReadOnly]="state.isReadOnlySession"></dfm-events-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.systems' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-systems-list [objectsList]="systemsList$ | async" [isReadOnly]="state.isReadOnlySession"></dfm-systems-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>{{ 'resources.implementationComponents' | translate }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <dfm-implementation-components-list [objectsList]="implementationComponentsList$ | async" [isReadOnly]="state.isReadOnlySession">
+        </dfm-implementation-components-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+</div>

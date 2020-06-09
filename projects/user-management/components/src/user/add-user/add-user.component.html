@@ -1,0 +1,29 @@
+<nb-card>
+  <form [formGroup]="formGroup">
+    <div class="form-group" formGroupName="user">
+      <label for="userFirstName">First Name</label>
+      <core-edit-multiple-lines-control id="firstName" formControlName="firstName" [isRichEditor]="false" [maxTextLength]="MaxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-group" formGroupName="user">
+      <label for="userLastName">Last Name</label>
+      <core-edit-multiple-lines-control id="lastName" formControlName="lastName" [isRichEditor]="false" [maxTextLength]="MaxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-group" formGroupName="user">
+      <label for="userEmail">Email</label>
+      <core-edit-multiple-lines-control id="email" formControlName="email" [isRichEditor]="false" [maxTextLength]="MaxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-group" formGroupName="user">
+      <label for="userType">Type</label>
+      <select class="form-control" formControlName="type" >
+        <option value="{{type.key}}" *ngFor="let type of types | keyvalue">{{type.value}}</option>
+      </select>
+    </div>
+
+    <button type="button" class="btn btn-info btn-block" (click)="addObject()" [disabled]="formGroup.invalid">
+      Add User
+    </button>
+  </form>
+</nb-card>

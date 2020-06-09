@@ -1,0 +1,29 @@
+<div
+  class="decision-table-cell-container"
+  [ngClass]="{ 'no-wrap-text': !isBottomTitleType() }"
+  ngbPopover="{{ text }}"
+  triggers="hover"
+  container="body"
+  [openDelay]="popoverOpenDelay">
+  <div *ngIf="!isEditable" (click)="onContainerClick()" class="decision-table-cell-text-container" [innerHTML]="getText()"></div>
+  <div class="decision-table-cell-input-container">
+    <input 
+      #input
+      class="decision-table-cell-input"
+      [ngModel]="text"
+      [hidden]="!isEditable || isBottomTitleType()"
+      (ngModelChange)="onTextChanged($event)"
+      (blur)="makeNotEditable()"
+      (keyup.enter)="makeNotEditable()"/>
+
+    <textarea
+      #textarea
+      rows="3"
+      class="decision-table-cell-input"
+      [hidden]="!isEditable || !isBottomTitleType()"
+      [ngModel]="text"
+      (ngModelChange)="onTextChanged($event)"
+      (blur)="makeNotEditable()">
+    </textarea>
+  </div>
+</div>

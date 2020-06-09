@@ -1,0 +1,15 @@
+{
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "@nebular/theme": "theme",
+        "core/components": "coreComponents",
+        "@ngrx/store": "ngrxStore",
+        "guid-typescript": "guidTypescript",
+        "ngx-clipboard": "ngxClipboard",
+        "core/models": "coreModels",
+        "core/utilities": "utilities"
+      }
+    }
+  }
+}

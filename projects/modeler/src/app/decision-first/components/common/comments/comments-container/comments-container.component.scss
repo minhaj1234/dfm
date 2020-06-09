@@ -1,0 +1,9 @@
+@import '../../../../../../assets/css/themes.scss';
+
+.comments-list-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  direction: rtl;
+  word-break: break-word;
+}

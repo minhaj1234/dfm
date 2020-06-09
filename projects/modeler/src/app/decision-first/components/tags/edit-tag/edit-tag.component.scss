@@ -1,0 +1,15 @@
+@import '../../../../../assets/css/themes.scss';
+
+.edit-panel  {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.edit-panel div {
+  display: flex;
+}
+
+.search-control {
+  max-width: 150px;
+}

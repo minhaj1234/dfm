@@ -1,0 +1,55 @@
+@import '../../../../assets/css/themes.scss';
+
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link-default {
+  color: nb-theme(darken-primary-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.tab-text-container {
+  margin: 8px 16px;
+  min-height: 1.2rem;
+  width: 100%;
+}
+
+.active-default {
+  background-color: nb-theme(primary-color);
+  color: white !important;
+}
+
+.tab-content-default {
+  position: relative;
+  flex: 1;
+}
+
+.tab-pane-default {
+  height: 100%;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: nb-theme(darken-primary-color);
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
+.active-default .icon {
+  font-size: 1.5rem;
+  color: nb-theme(lighten-primary-color);
+}
+
+.card-full-height {
+  height: 100%;
+}
+
+.nav {
+  padding-left: 20px;
+}

@@ -1,0 +1,22 @@
+<div #autocompleteRelationObjects>
+  <input type="text"
+    class="form-control search-control"
+    (input)="inputSearch()"
+    (click)="clickSearch()"
+    [formControl]="searchControl"
+    placeholder="{{ 'resources.typeToSelect' | translate }}" />
+  <nb-list class="autocomplete-list" *ngIf="isShowAutocompleteList">
+    <nb-list-item
+      *ngFor="let item of (autocompleteSearchList$ | async)"
+      class="relation-object"
+      id="item-{{item.id}}"
+      (click)="addRelationObject(item)">
+      {{ item.name }}
+    </nb-list-item>
+    <nb-list-item
+      class="add-object"
+      (click)="openDialogCreateObject()">
+      <hr class="mt-0" *ngIf="(autocompleteSearchList$ | async).length > 0" />{{ 'resources.add' | translate }}
+    </nb-list-item>
+  </nb-list>
+</div>

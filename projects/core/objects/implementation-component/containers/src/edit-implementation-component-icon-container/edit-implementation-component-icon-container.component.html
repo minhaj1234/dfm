@@ -1,0 +1,7 @@
+<nb-card>
+  <div>
+    <div class="container col-md-5 center-block tab-item pt-2" *ngIf="state$ | async as state">
+      <core-edit-implementation-component-icon [icon]="state.icon"></core-edit-implementation-component-icon>
+    </div>
+  </div>
+</nb-card>

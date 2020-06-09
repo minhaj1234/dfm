@@ -1,0 +1,21 @@
+.print-object-container {
+  padding-left: 40px;
+}
+
+.comments-list-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  direction: rtl;
+  word-break: break-word;
+}
+
+:host ::ng-deep {
+  * {
+    color: #000 !important;
+  }
+
+  dfm-decision-answer > div {
+    padding: 0 !important;
+  }
+}

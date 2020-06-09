@@ -1,0 +1,10 @@
+.container-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+:host ::ng-deep .nb-arrow-down {
+  color: #6b6b6b;
+}

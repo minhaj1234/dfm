@@ -1,0 +1,9 @@
+@import '../../../../../assets/css/themes.scss';
+
+input.ng-touched.ng-invalid {
+  border: nb-theme(form-control-invalid-border);
+}
+
+.icon {
+  max-width: 32px;
+}

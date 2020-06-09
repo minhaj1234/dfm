@@ -1,0 +1,9 @@
+<div>
+  <form [formGroup]="versionInformationForm">
+    <label>{{ 'resources.linkToSupportSite' | translate }}</label>
+    <input type="text" class="form-control mb-3" formControlName="supportLink"/>
+
+    <label>{{ 'resources.versionInformation' | translate }}</label>
+    <core-edit-multiple-lines-control id="description" formControlName="information" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+  </form>
+</div>

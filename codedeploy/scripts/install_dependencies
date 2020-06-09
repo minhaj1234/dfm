@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo systemctl stop nginx
+sudo rm -rf /var/www/html/modeler/*
+sudo rm -rf /var/www/html/admin/*
+sudo rm /etc/nginx/sites-available/default

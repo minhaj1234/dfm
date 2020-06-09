@@ -1,0 +1,12 @@
+{
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "@ngrx/store": "store",
+        "@ngrx/entity": "entity",
+        "core/utilities": "utilities",
+        "core/models": "models"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "angular4-hal": "angular4Hal",
+        "core/services": "coreServices",
+        "core/utilities": "coreUtilities",
+        "angular4-hal/src/external.service": "external_service"
+      }
+    }
+  }
+}

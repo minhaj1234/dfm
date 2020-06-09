@@ -1,0 +1,50 @@
+.decision-table-cell-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.decision-table-cell-text-container {
+  min-height: 1rem;
+  width: 100%;
+  overflow: hidden;
+  line-height: normal;
+  word-break: break-all;
+}
+
+.no-wrap-text {
+  white-space: nowrap;
+}
+
+.decision-table-cell-input-container {
+  flex-grow: 1;
+}
+
+.decision-table-cell-input {
+  width: 100%;
+}
+
+:host {
+  width: 100%;
+  &.decision-table-top-header {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &.decision-table-bottom-header {
+    font-style: italic;
+    font-size: 0.7rem;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  &.decision-table-cell {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+textarea {
+  resize: none;
+}

@@ -1,0 +1,33 @@
+@import '../../../../../assets/css/themes.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.header-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.header-icon {
+  font-size: 24px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+nb-list-item {
+  padding-top: 4px;
+}
+
+.nb-list-item-text {
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  background-color: nb-theme(list-background-color);
+  color: nb-theme(list-font-color);
+  cursor: pointer;
+}

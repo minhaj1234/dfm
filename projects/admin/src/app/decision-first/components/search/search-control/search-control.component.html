@@ -1,0 +1,8 @@
+<div>
+  <div class="input-group">
+    <input type="text" class="form-control search-input" placeholder="Search"
+      [formControl]="searchControl" (click)="updateSearch()" (input)="inputSearch.emit()" />
+    <div class="input-group-append">
+      <i class="btn btn-info eva eva-search-outline search-icon" (click)="onClickSearch()"></i>
+    </div>
+  </div>

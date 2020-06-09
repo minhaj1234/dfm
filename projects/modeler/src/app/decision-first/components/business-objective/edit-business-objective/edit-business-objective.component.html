@@ -1,0 +1,19 @@
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label for="businessObjectiveName">{{ 'resources.name' | translate }}</label>
+    <core-edit-multiple-lines-control id="businessObjectiveName" formControlName="name" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+  </div>
+
+  <div class="form-group">
+    <label for="businessObjectiveDescription">{{ 'resources.description' | translate }}</label>
+    <core-edit-multiple-lines-control id="businessObjectiveDescription" formControlName="description" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+  </div>
+
+  <core-object-tags
+    [addTabAction]="fromModelerStore.AddTab"
+    [tags]="editObject.tags"
+    *ngIf="editObject">
+  </core-object-tags>
+
+  <core-input-url formControlName="url"></core-input-url>
+</form>

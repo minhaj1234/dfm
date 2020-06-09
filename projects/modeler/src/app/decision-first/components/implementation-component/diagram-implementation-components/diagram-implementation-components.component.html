@@ -1,0 +1,11 @@
+<div *ngIf="implementationComponents && implementationComponents.length > 0">
+  <p>{{ 'resources.implementationComponents' | translate }}</p>
+  <div class="ml-1 mt-2 mb-3 disable-text-selection panel"
+    id="panel-implementation-component-{{ implementationComponent.id }}"
+    *ngFor="let implementationComponent of implementationComponents"
+    (dblclick)="openTabImplementationComponent(implementationComponent.id)"
+    (contextmenu)="openUrlImplementationComponent(implementationComponent.url)">
+    <img class="icon mr-2" [src]="transformToSafeSvgResourceUrl(implementationComponent)">
+    <span class="name">{{ implementationComponent.name }}</span>
+  </div>
+</div>

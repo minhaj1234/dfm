@@ -1,0 +1,16 @@
+{
+	"ngPackage": {
+		"lib": {
+			"umdModuleIds": {
+				"@nebular/theme": "theme",
+				"@ngrx/store": "store",
+				"@ngrx/effects": "effects",
+				"@ngrx/router-store": "routerStore",
+				"auth0-js": "auth0Js",
+				"jwt-decode": "jwtDecodeLib",
+				"ngrx-store-localstorage": "ngrxStoreLocalstorage",
+				"angular4-hal": "angular4Hal"
+			}
+		}
+	}
+}

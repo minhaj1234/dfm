@@ -1,0 +1,29 @@
+<nb-card>
+  <form [formGroup]="formGroup">
+    <div class="form-group">
+      <label for="name">{{ 'resources.name' | translate }}</label>
+      <core-edit-multiple-lines-control id="name" formControlName="name" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+    <div class="form-group">
+      <label for="description">{{ 'resources.description' | translate }}</label>
+      <core-edit-multiple-lines-control id="description" formControlName="description" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-group">
+      <label for="type">{{ 'resources.type' | translate }}</label>
+      <select id="type" class="form-control" formControlName="type">
+        <option value="{{ organizationType }}" *ngFor="let organizationType of getOrganizationTypeValues">
+          {{ getI18nNameOrganizationType(organizationType.toLowerCase()) | translate }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="url">{{ 'resources.url' | translate }}</label>
+        <input type="text" class="form-control" id="url" formControlName="url" />
+      </div>
+    <button type="button" class="btn btn-info btn-block add-organization" (click)="addObject()" [disabled]="formGroup.invalid">
+      {{ 'resources.addOrganization' | translate }}
+    </button>
+  </form>
+</nb-card>

@@ -1,0 +1,13 @@
+<!-- {{ 'resources.comments' | translate }} -->
+<dfm-comment-editor [object]="object" [addAction]="addAction"></dfm-comment-editor>
+<div class="comments-list-container" *ngFor="let comment of comments">
+  <dfm-comment-item-display 
+    [object]="object" 
+    [comment]="comment" 
+    [addAction]="addAction" 
+    [removeAction]="removeAction" 
+    [authenticatedUser]="authenticatedUser"
+    [isReadOnly]="isReadOnly">
+  </dfm-comment-item-display>
+</div>
+  

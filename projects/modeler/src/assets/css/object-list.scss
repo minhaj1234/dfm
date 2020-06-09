@@ -1,0 +1,12 @@
+@import "./themes.scss";
+
+.object-list-item-name {
+  font-size: nb-theme(text-paragraph-font-size);
+  cursor: pointer;
+}
+
+.object-list-remove-item {
+  font-size: nb-theme(text-paragraph-2-line-height);
+  cursor: pointer;
+  float: right;
+}

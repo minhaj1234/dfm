@@ -1,0 +1,32 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <core-logo></core-logo>
+  </nb-layout-header>
+
+  <nb-layout-column>
+    <nb-card class="h-100">
+      <div class="tab-item row no-margin login-form-container" *ngIf="loginContainerState$ | async as state">
+        <div class="mt-5 col-9 col-sm-6 col-md-4 col-lg-3">
+          <core-login *ngIf="!isForgotPasswordDisplayed" [authenticationState]="state" (sendLogin)="onSendLogin($event)"></core-login>
+          <core-forgot-password 
+            *ngIf="isForgotPasswordDisplayed" 
+            (sendForgotPassword)="onSendForgotPassword($event)" 
+            [inProgress]="state.forgotPasswordInProgress">
+          </core-forgot-password>
+
+          <div class="forms-links-container">
+            <div *ngIf="!isForgotPasswordDisplayed" (click)="onToggleForm()">{{ 'resources.forgotPassword' | translate }}</div>
+            <div *ngIf="isForgotPasswordDisplayed" (click)="onToggleForm()">{{ 'resources.login' | translate }}</div>
+          </div>
+          <div class="login-version-information-container" *ngIf="displayVersionInformation">
+            <div class="mt-5" [innerHtml]="state.versionInformation"></div>
+            <div>
+              {{ 'resources.moreDetailsAt' | translate }} 
+              <a target="_blank" href="{{ getUrlWithProtocol(state.supportLink) }}">{{ getUrlWithoutProtocol(state.supportLink) }}</a>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

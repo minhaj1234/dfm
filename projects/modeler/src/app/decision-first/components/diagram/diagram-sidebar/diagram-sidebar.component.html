@@ -1,0 +1,48 @@
+<div class="diagram-sidebar-container col-3 col-lg-2 no-padding">
+  <div class="diagram-sidebar-desktop-layout">
+    <dfm-diagram-tabs-container #tabsDesktop (selectTab)="onTabSelected($event)" [selectedTabType]="selectedTabType">
+      <dfm-diagram-tab [contentTemplateRef]="detailsTabContent" [titleIcon]="'eva eva-bookmark'" title="{{ 'resources.details' | translate }}" [type]='diagramTabTypes.Details'></dfm-diagram-tab>
+      <dfm-diagram-tab [needDisplay]="needDisplayToolsTab" *ngIf="!isReadOnly" [contentTemplateRef]="toolsTabContent" [titleIcon]="'eva eva-settings-2-outline'" title="{{ 'resources.tools' | translate }}" [type]='diagramTabTypes.Tools'></dfm-diagram-tab>
+    </dfm-diagram-tabs-container>
+  </div>
+
+  <div class="diagram-sidebar-mobile-layout">
+    <dfm-diagram-tabs-container #tabsMobile (selectTab)="onTabSelected($event)" [selectedTabType]="selectedTabType">
+      <dfm-diagram-tab [contentTemplateRef]="detailsTabContent" [titleIcon]="'eva eva-bookmark'" title="{{ 'resources.details' | translate }}" [type]='diagramTabTypes.Details'></dfm-diagram-tab>
+      <dfm-diagram-tab *ngIf="!isReadOnly" [contentTemplateRef]="newObjectTabContent" [titleIcon]="'eva eva-plus-square-outline'" title="{{ 'resources.newObject' | translate }}" [type]='diagramTabTypes.NewObjects'></dfm-diagram-tab>
+      <dfm-diagram-tab *ngIf="!isReadOnly" [contentTemplateRef]="linksTabContent" [titleIcon]="'eva eva-link-2-outline'" title="{{ 'resources.links' | translate }}" [type]='diagramTabTypes.Links'></dfm-diagram-tab>
+      <dfm-diagram-tab *ngIf="!isReadOnly" [contentTemplateRef]="objectsTabContent" [titleIcon]="'eva eva-grid-outline'" title="{{ 'resources.objects' | translate }}" [type]='diagramTabTypes.Objects'></dfm-diagram-tab>
+    </dfm-diagram-tabs-container>
+  </div>
+
+  <ng-template #detailsTabContent>
+    <div class="mt-2">
+      <dfm-edit-diagram [editObject]="diagram" [isReadOnly]="isReadOnly"></dfm-edit-diagram>
+    </div>
+  </ng-template>
+
+  <ng-template #toolsTabContent>
+    <dfm-palettes-diagram-container
+      [diagram]="diagram"
+      [existingObjects]="existingObjects">
+    </dfm-palettes-diagram-container>
+  </ng-template>
+
+  <ng-template #newObjectTabContent>
+    <div class="mb-3 mt-3">
+      <dfm-go-js-add-object-palette></dfm-go-js-add-object-palette>
+    </div>
+  </ng-template>
+
+  <ng-template #linksTabContent>
+    <div class="mb-3 mt-3">
+      <dfm-go-js-links-palette [diagram]="diagram"></dfm-go-js-links-palette>
+    </div>
+  </ng-template>
+
+  <ng-template #objectsTabContent>
+    <div class="existing-object-palette-mobile pt-3">
+      <dfm-go-js-existing-objects-palette [existingObjects]="existingObjects" (close)="closeOpenTab()" [isClosable]="true"></dfm-go-js-existing-objects-palette>
+    </div>
+  </ng-template>
+</div>

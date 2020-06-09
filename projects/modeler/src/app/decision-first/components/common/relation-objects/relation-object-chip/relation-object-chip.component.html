@@ -1,0 +1,10 @@
+<div *ngIf="dfmObject" class="chip" (dblclick)="openTab(dfmObject)" [contextMenu]="relationObjectContextMenu" [contextMenuSubject]="dfmObject">
+  <span class="disable-text-selection" >
+    {{ dfmObject.name }}
+  </span>
+  <i class="eva eva-close-circle" *ngIf="isCanRemove()" (click)="remove(dfmObject)"></i>
+</div>
+<context-menu #relationObjectContextMenu>
+  <ng-template contextMenuItem (execute)="openTab($event.item)">{{ 'resources.openTab' | translate }}</ng-template>
+  <ng-template contextMenuItem *ngIf="isCanRemove()" (execute)="remove($event.item)">{{ 'resources.remove' | translate }}</ng-template>
+</context-menu>

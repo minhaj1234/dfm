@@ -1,0 +1,43 @@
+<div class="text-center mb-1">
+  <h5>Groups</h5>
+  <div class="group-table-toolbar mb-2" *ngIf="!isReadOnly">
+      <div class="add-group-toolbar">
+        <button *ngIf="addGroupAction" type="button" class="form-control btn-info add-group-button" (click)="onAddGroupClick()">
+          Add Group
+        </button>
+      </div>
+      <div class="add-groups-to-user-toolbar" *ngIf="addGroupsToUserAction">
+        <button class="form-control btn-info add-group-button mr-2" (click)="onAddGroupsToUserClick()" [disabled]="!canAddGroupToUser()">
+          Add Group To User
+        </button>
+        <core-autocomplete-list 
+          (updateSearchList)="onSearchListUpdate($event)" 
+          (selectListItem)="onGroupSelected($event)"
+          (resetSearchList)="onResetSearchList()"
+          [autocompleteSearchList]="(autocompleteSearchList$ | async)"
+          [searchDebounceTime]="searchDebounceTime">
+        </core-autocomplete-list>
+      </div>
+    </div>
+  <table class="table disable-text-selection" *ngIf="groups && groups.length > 0; else noGroups;">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th *ngIf="canDeleteGroup()"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="group-row" *ngFor="let group of groups" (dblclick)="openGroupTab(group.id)">
+        <td>{{ group.name }}</td>
+        <td>{{ group.description }}</td>
+        <td *ngIf="canDeleteGroup()">
+          <i class="nb-close icon" (click)="onDeleteClick(group.id)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noGroups>
+    No groups.
+  </ng-template>
+</div>

@@ -1,0 +1,6 @@
+<nb-card class="h-100">
+  <div class="no-margin tab-container h-100" #editDecisionTabContainer *ngIf="state$ | async as state">
+    <dfm-graphable-generated-requirements-diagram [graphable]="state.decision">
+    </dfm-graphable-generated-requirements-diagram>
+  </div>
+</nb-card>

@@ -1,0 +1,28 @@
+<nb-card>
+  <div>
+    <div class="container col-md-5 center-block tab-item" *ngIf="state$ | async as state">
+      <user-management-edit-group
+        [editObject]="state.group"
+        [updateAction]="options.updateGroupAction"
+        [debounceTime]="options.debounceTime"
+        [isReadOnly]="!isAdmin(state.authenticatedUserType)">
+      </user-management-edit-group>
+      <user-management-users-table
+        *ngIf="state.group && state.group.users"
+        [users]="state.group.users"
+        [groupId]="groupId"
+        [customerId]="getCustomerId(state.group)"
+        [getAutocompleteSearchListSelector]="options.getAutocompleteSearchListSelector"
+        [addTabAction]="options.addTabAction"
+        [addUserAction]="options.addUserAction"
+        [addUsersToGroupAction]="options.addUsersToGroupAction"
+        [removeUserFromGroupAction]="options.removeUserFromGroupAction"
+        [loadUsersToAutocompleteSearchListAction]="options.loadUsersToAutocompleteSearchListAction"
+        [setAutocompleteSearchListInitialStateAction]="options.setAutocompleteSearchListInitialStateAction"
+        [isReadOnly]="!isAdmin(state.authenticatedUserType)"
+        [searchDebounceTime]="options.searchDebounceTime"
+        [autocompleteListPageSize]="options.autocompleteListPageSize">
+      </user-management-users-table>
+    </div>
+  </div>
+</nb-card>

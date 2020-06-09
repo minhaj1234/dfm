@@ -1,0 +1,11 @@
+.tab-item {
+  height: calc(100vh - #{nb-theme(tab-item-indent-top)});
+  max-height: calc(100vh - #{nb-theme(tab-item-indent-top)});
+  margin-top: nb-theme(tab-item-margin-top);
+  margin-bottom: nb-theme(tab-item-margin-bottom);
+  overflow: nb-theme(tab-item-overflow);
+}
+
+.no-margin {
+  margin: 0;
+}

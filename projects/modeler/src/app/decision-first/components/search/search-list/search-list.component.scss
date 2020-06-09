@@ -1,0 +1,6 @@
+@import '../../../../../assets/css/themes.scss';
+
+.search-list {
+  max-height: calc(100vh - #{nb-theme(search-list-top-margin)});
+  background-color: #ffffff;
+}

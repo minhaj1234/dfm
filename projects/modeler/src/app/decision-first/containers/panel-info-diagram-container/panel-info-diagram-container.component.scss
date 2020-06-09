@@ -1,0 +1,36 @@
+@import '../../../../assets/css/themes.scss';
+
+.panel-info-diagram-container {
+  height: calc(100vh - #{nb-theme(panel-info-diagram-container-indent-top)});
+}
+
+.panel-info-diagram-mobile-layout {
+  display: none;
+  flex-shrink: 1;
+}
+
+.panel-info-diagram-desktop-layout {
+  height: 100%;
+  width: 300px;
+  max-width: 500px;
+  min-width: 150px;
+}
+
+@media only screen and (max-width: 900px) {
+  :host {
+    max-width: 100%;
+    flex-basis: auto;
+  }
+
+  .panel-info-diagram-container {
+    height:100%;
+  }
+
+  .panel-info-diagram-mobile-layout {
+    display: block;
+  }
+
+  .panel-info-diagram-desktop-layout {
+    display: none;
+  }
+}

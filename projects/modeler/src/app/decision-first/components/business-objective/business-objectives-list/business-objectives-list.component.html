@@ -1,0 +1,13 @@
+<nb-list>
+  <nb-list-item *ngFor="let object of objectsList; trackBy: trackByFn" draggable [dragScope]="'BusinessObjective'" [dragData]="object">
+    <dfm-preview-container [to]="object">
+      <dfm-search-list-item  
+        [searchItem]="object" 
+        [isReadOnly]="isReadOnly"
+        [type]="searchListItemType">
+      </dfm-search-list-item>
+    </dfm-preview-container>
+  </nb-list-item>
+</nb-list>
+<core-pagination-load-more [store]="modelerStore" [pagination]="pagination$ | async" [getMoreAction]="fromModelerStore.LoadSpecificPageForBusinessObjectivesList">
+</core-pagination-load-more>

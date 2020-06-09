@@ -1,0 +1,43 @@
+<form [formGroup]="answerForm" *ngIf="!isReadOnly; else readOnlyAnswer;">
+  <div class="answer-container">
+    <div class="form-group">
+      <label for="answerType">{{ 'resources.answerType' | translate }}</label>
+      <dfm-decision-answer-type id="answerType" [answerForm]="answerForm"></dfm-decision-answer-type>
+    </div>
+    <div>
+      <p>{{ 'resources.answerValue' | translate }}</p>
+      <div *ngIf="answerForm.controls['answerTypeId'].value === answerType.YesNo">
+        <dfm-decision-answer-yes-no [answerForm]="answerForm"></dfm-decision-answer-yes-no>
+      </div>
+      <div *ngIf="answerForm.controls['answerTypeId'].value === answerType.DefinedList">
+        <dfm-decision-answer-defined-list [answerForm]="answerForm" [answerItems]="answerItems"></dfm-decision-answer-defined-list>
+      </div>
+      <div *ngIf="answerForm.controls['answerTypeId'].value === answerType.ExternalValueList">
+        <dfm-decision-answer-for-text-content formControlName="externalValueList">
+        </dfm-decision-answer-for-text-content>
+      </div>
+      <div *ngIf="answerForm.controls['answerTypeId'].value === answerType.NumberInRange">
+        <dfm-decision-answer-number-in-range [answerForm]="answerForm"></dfm-decision-answer-number-in-range>
+      </div>
+      <div *ngIf="answerForm.controls['answerTypeId'].value === answerType.Text">
+        <dfm-decision-answer-for-text-content formControlName="text"></dfm-decision-answer-for-text-content>
+      </div>
+      <div *ngIf="answerForm.controls['answerTypeId'].value === answerType.DateTime">
+        <dfm-decision-answer-date-time [answerForm]="answerForm"></dfm-decision-answer-date-time>
+      </div>
+      <div *ngIf="answerForm.controls['answerTypeId'].value === answerType.Other">
+        <dfm-decision-answer-for-text-content formControlName="other"></dfm-decision-answer-for-text-content>
+      </div>
+    </div>
+    <div class="pt-2">
+      <dfm-decision-answer-supporting-information [answerForm]="answerForm"></dfm-decision-answer-supporting-information>
+    </div>
+  </div>
+</form>
+<ng-template class="mt-3" #readOnlyAnswer>
+  <div class="pt-3">
+    <div class="name-answer-type" [innerHTML]="getNameAnswerType() | async"></div>
+    <p class="answer-text-value" [innerHTML]="getAnswerTextValue() | async"></p>
+    <div class="answer-supporting-information" [innerHTML]="getAnswerSupportingInformation() | async"></div>
+  </div>
+</ng-template>

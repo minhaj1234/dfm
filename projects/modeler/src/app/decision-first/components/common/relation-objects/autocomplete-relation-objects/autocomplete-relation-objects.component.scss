@@ -1,0 +1,37 @@
+@import "../../../../../../assets/css/themes.scss";
+
+.search-control {
+  width: 200px;
+  background: transparent;
+  border: none;
+}
+
+.form-control {
+  box-shadow: none !important;
+}
+
+.autocomplete-list {
+  position: absolute;
+  z-index: 1;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 2px 2px 3px 3px #ccc;
+  -moz-box-shadow: 2px 2px 3px 3px #ccc;
+  box-shadow: 2px 2px 3px 3px #ccc;
+}
+
+nb-list-item {
+  width: 200px;
+  padding: 10px 20px 10px 20px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.relation-object:hover {
+  background: nb-theme(darken-primary-color);
+  color: #ffffff;
+}
+
+.add-object {
+  color: nb-theme(darken-primary-color);
+  font-weight: bold;
+}

@@ -1,0 +1,19 @@
+nb-list-item {
+  border: 0px !important;
+  word-wrap: break-word;
+}
+
+.item-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #6b6b6b;
+}
+
+.item-description {
+  font-size: 0.9rem;
+  color: #7c7c7c;
+}
+
+hr {
+  border-color: nb-theme(lt-gray);
+}

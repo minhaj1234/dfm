@@ -1,0 +1,75 @@
+<div class="main" *ngIf="state$ | async as state">
+  <ul class="nav nav-tabs">
+    <li attr.data-action="focus-{{ tab.id }}" class="nav-item" *ngFor="let tab of state.tabs; trackBy: trackByFn"
+      (click)="focusTab($event, tab)">
+      <div class="nav-link nav-link-default" [class.active-default]="state.activeTabId === tab.id">
+        <div class="tab-text-container">
+          <span
+            *ngIf="isTechnicalTab(tab.type); else objectName">{{ getTechnicalTabName(tab.type.toLowerCase()) | translate }}</span>
+          <ng-template #objectName><span>{{ getObjectName(tab) | async }}</span></ng-template>
+        </div>
+        <i *ngIf="!isHomeTab(tab.type)" attr.data-action="close-{{ tab.id }}" class="nb-close icon"
+          (click)="closeTab($event, tab.id)"></i>
+      </div>
+    </li>
+  </ul>
+  <div class="tab-content tab-content-default">
+    <div class="tab-pane tab-pane-default" *ngFor="let tab of state.tabs; trackBy: trackByFn"
+      [class.active]="state.activeTabId === tab.id">
+      <dfm-home-container *ngIf="isHomeTab(tab.type)"></dfm-home-container>
+
+      <dfm-admin-container *ngIf="isAdminTab(tab.type)"></dfm-admin-container>
+
+      <dfm-search-container *ngIf="isSearchTab(tab.type)"></dfm-search-container>
+
+      <dfm-view-diagram-container *ngIf="isDiagramTab(tab.type)" [diagramId]="tab.id"></dfm-view-diagram-container>
+
+      <dfm-edit-decision-container *ngIf="isDecisionTab(tab.type)" [decisionId]="tab.id"
+        [expanded]="tab.jumpMenuSelectedItem">
+      </dfm-edit-decision-container>
+
+      <dfm-edit-knowledge-source-container *ngIf="isKnowledgeSourceTab(tab.type)" [knowledgeSourceId]="tab.id"
+        [expanded]="tab.jumpMenuSelectedItem">
+      </dfm-edit-knowledge-source-container>
+
+      <dfm-edit-organization-container *ngIf="isOrganizationTab(tab.type)" [organizationId]="tab.id">
+      </dfm-edit-organization-container>
+
+      <dfm-edit-input-data-container *ngIf="isInputDataTab(tab.type)" [inputDataId]="tab.id"
+        [expanded]="tab.jumpMenuSelectedItem">
+      </dfm-edit-input-data-container>
+
+      <dfm-edit-business-objective-container *ngIf="isBusinessObjectiveTab(tab.type)" [businessObjectiveId]="tab.id">
+      </dfm-edit-business-objective-container>
+
+      <dfm-edit-process-container *ngIf="isProcessTab(tab.type)" [processId]="tab.id"></dfm-edit-process-container>
+
+      <dfm-edit-event-container *ngIf="isEventTab(tab.type)" [eventId]="tab.id"></dfm-edit-event-container>
+
+      <dfm-edit-system-container *ngIf="isSystemTab(tab.type)" [systemId]="tab.id"></dfm-edit-system-container>
+
+      <dfm-edit-implementation-component-container *ngIf="isImplementationComponentTab(tab.type)"
+        [implementationComponentId]="tab.id">
+      </dfm-edit-implementation-component-container>
+
+      <dfm-edit-decision-table-component-container *ngIf="isDecisionTable(tab.type)" [decisionId]="tab.id">
+      </dfm-edit-decision-table-component-container>
+
+      <dfm-edit-requirement-network-container *ngIf="isRequirementNetwork(tab.type)" [objectId]="tab.id"
+        [objectType]="tab.objectType">
+      </dfm-edit-requirement-network-container>
+
+      <dfm-tag-page-container *ngIf="isTagTab(tab.type)" [tagId]="tab.id"></dfm-tag-page-container>
+
+      <user-management-edit-user-container *ngIf="isUserTab(tab.type)" [userId]="tab.id"
+        [options]="editUserContainerOptions">
+      </user-management-edit-user-container>
+
+      <user-management-edit-group-container *ngIf="isGroupTab(tab.type)" [groupId]="tab.id"
+        [options]="editGroupContainerOptions">
+      </user-management-edit-group-container>
+
+      <dfm-print-tab-container *ngIf="isPrintTab(tab.type)" [tab]="tab"></dfm-print-tab-container>
+    </div>
+  </div>
+</div>

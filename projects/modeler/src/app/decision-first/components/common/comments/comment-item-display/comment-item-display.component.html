@@ -1,0 +1,44 @@
+<ng-container *ngIf="comment">
+  <div class="comment-container" [ngClass]="{'bordered-comment-container': !displayForPrinting}" #divComment>
+    <div class="icon big-icon" *ngIf="doDisplayIcon()">
+      <img [src]="iconUrl">
+    </div>
+    <div class="comment-contant-container">
+      <div class="comment-header">
+        <div class="icon small-icon" *ngIf="doDisplayIcon()">
+          <img [src]="iconUrl">
+        </div>
+        <div class="name-date-container" *ngIf="!displayForPrinting">
+          <div class="comment-name" (click)="onUserNameClick()" *ngIf="!comment.isDeleted">{{comment.user.firstname}} {{comment.user.lastname}}</div>
+          <div class="comment-date" *ngIf="!comment.isDeleted">{{comment.createdDate | date: 'MMM dd yyyy, H:mm'}}</div>
+        </div>
+        <div class="name-date-printed-container" *ngIf="displayForPrinting">
+          <div class="comment-name-print" *ngIf="!comment.isDeleted">{{comment.user.firstname}} {{comment.user.lastname}}</div>
+          <div class="comment-date-print" *ngIf="!comment.isDeleted">{{comment.createdDate | date: 'MMM dd yyyy, H:mm'}}</div>
+        </div>
+        <div *ngIf="!isReadOnly && !comment.isDeleted && canDelete()" class="delete-icon-container">
+          <i class="eva eva-close-outline icon-gray-color" (click)="deleteComment(comment)"></i>
+        </div>
+      </div>
+      <div *ngIf="!comment.isDeleted" class="comment-text" [innerHTML]="comment.text"></div>
+      <div *ngIf="comment.isDeleted" class="comment-text-deleted">{{ comment.text | translate }}</div>
+      <div *ngIf="canReply()" class="comment-footer">
+        <span (click)="reply()">{{ 'resources.reply' | translate }}</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="replyEditorOpen">
+    <dfm-comment-editor [object]="object" [repliedCommentId]="comment.id" [addAction]="addAction"></dfm-comment-editor>
+  </div>
+  <div class="comments-list-container" *ngFor="let comment of comment.childComments">
+    <dfm-comment-item-display 
+      [object]="object" 
+      [comment]="comment" 
+      [addAction]="addAction" 
+      [removeAction]="removeAction" 
+      [isReadOnly]="isReadOnly"
+      [authenticatedUser]="authenticatedUser"
+      [displayForPrinting]="displayForPrinting">
+    </dfm-comment-item-display>
+  </div>
+</ng-container>

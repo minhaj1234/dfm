@@ -1,0 +1,7 @@
+<nb-card>
+  <div class="container tag-container col-md-5 center-block tab-item text-center">
+    <dfm-edit-tag [tag]="tag$ | async"></dfm-edit-tag>
+    
+    <dfm-tag-associated-objects-display [tag]="tag$ | async"></dfm-tag-associated-objects-display>
+  </div>
+</nb-card>

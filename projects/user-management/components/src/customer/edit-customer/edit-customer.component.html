@@ -1,0 +1,47 @@
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" class="form-control" formControlName="name" />
+  </div>
+
+  <div class="form-group">
+    <label for="id">Account Id</label>
+    <input type="text" class="form-control" formControlName="id" readonly/>
+  </div>
+
+  <div class="form-group">
+    <label for="apiKey">API key</label>
+    <div class="input-group mb-3">
+      <input id="apiKey" type="text" class="form-control" formControlName="apiKey" readonly>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary eva eva-refresh-outline" (click)="generateApiKey()"></button>
+        <button class="btn btn-outline-secondary eva eva-copy-outline" (click)="copyApiKey()"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-inline form-group">
+    <label class="label-form-inline" for="createdDate">Created date</label>
+    <core-date-time-picker class="date-control" id="createdDate" [showTime]="false" formControlName="createdDate" readonly></core-date-time-picker>
+  </div>
+
+  <div class="form-inline form-group">
+    <label class="label-form-inline" for="validDate">Valid until date</label>
+    <core-date-time-picker class="date-control" id="validDate" [showTime]="false" formControlName="validDate"></core-date-time-picker>
+  </div>
+
+  <div class="form-inline form-group">
+    <label class="label-form-inline" for="numberOfUsers">Number of Users</label>
+    <input type="number" class="form-control number-of-users" id="numberOfUsers" formControlName="numberOfUsers" />
+  </div>
+
+  <div class="form-group">
+    <label for="footerHtml">Footer HTML</label>
+    <textarea autosize class="form-control" rows="2" id="footerHtml" formControlName="footerHtml"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="domains">Domains</label>
+    <textarea autosize class="form-control" rows="2" id="domains" formControlName="domains"></textarea>
+  </div>
+</form>

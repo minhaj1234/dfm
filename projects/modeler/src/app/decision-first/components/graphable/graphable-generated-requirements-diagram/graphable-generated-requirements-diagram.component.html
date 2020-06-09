@@ -1,0 +1,19 @@
+<div (window:resize)="alignCenterDiagram()" class="mb-3">
+  {{caption}}
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <i class="eva eva-maximize-outline icon zoom-in icon-gray-color" (click)="diagramZoomIn()"></i>
+        <i class="eva eva-minimize-outline icon zoom-out icon-gray-color" (click)="diagramZoomOut()"></i>
+      </div>
+      <div class="requirement-network-diagram-expand-icon">
+        <i class="eva eva-expand-outline expand-collapse-icon" [hidden]="isExpanded" (click)="onExpand()"></i>
+        <i class="eva eva-collapse-outline expand-collapse-icon" [hidden]="!isExpanded" (click)="onCollapse()"></i>
+      </div>
+    </div>
+  </div>
+  <div class="diagram-container" mwlResizable [resizeEdges]="{ bottom: true }" [ngStyle]="diagramContainerStyle"
+    (resizing)="onResizingDiagramContainer($event)">
+    <div #diagramDiv class="diagramDiv disable-select-border-canvas"></div>
+  </div>
+</div>

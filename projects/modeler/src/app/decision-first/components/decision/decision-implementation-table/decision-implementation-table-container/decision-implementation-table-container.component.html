@@ -1,0 +1,119 @@
+<p-table *ngIf="decision && decision.decisionImplementationTable" [formGroup]="tableForm" #table
+  class="decision-table-container mb-3" mwlResizable [resizeEdges]="{ bottom: true }"
+  (resizing)="onResizingDecisionImplementationTableContainer($event)" [value]="rowsFormArray.controls"
+  [columns]="headersFormArray.controls" [resizableColumns]="true" [scrollable]="true"
+  [scrollHeight]="getScrollHeightWithUnits()" [frozenWidth]="frozenHeaderWidth">
+  <ng-template pTemplate="caption">
+    <div class="decision-table-caption">
+      <div *ngIf="isExpanded" class="expanded-caption-container">
+        <div class="expanded-caption-name">{{ decision.name }}</div>
+      </div>
+      <div class="decision-table-cell-expand-icon">
+        <i class="eva eva-expand-outline expand-collapse-icon" [hidden]="isExpanded" (click)="onExpand()"></i>
+        <i class="eva eva-collapse-outline expand-collapse-icon" [hidden]="!isExpanded" (click)="onCollapse()"></i>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="colgroup" let-columns>
+    <colgroup>
+      <col *ngFor="let header of columns" class="colgroup-column" />
+    </colgroup>
+  </ng-template>
+
+  <ng-template pTemplate="frozenheader">
+    <tr [ngStyle]="{ height: getFrozenHeaderHeight()}">
+      <th class="decision-table-frozen-header">
+        <select formControlName="option" class="option-select-input">
+          <option [ngValue]="option.key" *ngFor="let option of decisionTableOptions">{{ option.value }}</option>
+        </select>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="frozenbody" let-row>
+    <tr [pSelectableRow]="rowData">
+      <td class="decision-table-frozenbody-cell" [contextMenu]="contextMenu" [contextMenuSubject]="{ row: row }">
+        {{ getRowNumber(row) }}
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr formArrayName="headers">
+      <th *ngFor="let header of columns; let headerIndex = index" [formGroupName]="headerIndex" pResizableColumn
+        class="decision-table-header-cell"
+        [ngClass]="[isBorderHeader(header) ? 'header-group-border' : '', getHeaderSectionClass(header)]"
+        [contextMenu]="contextMenu" [contextMenuSubject]="{ header: header }">
+        <dfm-decision-implementation-table-cell formControlName="topTitle" [isReadOnly]="isReadOnly"
+          [cellType]="cellType.TopTitle"></dfm-decision-implementation-table-cell>
+      </th>
+    </tr>
+    <tr formArrayName="headers" #bottomHeaderRow [(style.offsetHeight)]="testHeight">
+      <th *ngFor="let header of columns; let headerIndex = index" [formGroupName]="headerIndex" pResizableColumn
+        class="decision-table-header-cell decision-table-bottom-header-cell"
+        [ngClass]="[isBorderHeader(header) ? 'header-group-border' : '']" [contextMenu]="contextMenu"
+        [contextMenuSubject]="{ header: header }">
+        <div>
+          <dfm-decision-implementation-table-cell (heightChanged)="onTitleHeightChanged()" formControlName="bottomTitle"
+            [isReadOnly]="isReadOnly || isReadOnlyAnswer(header)" [cellType]="cellType.BottomTitle">
+          </dfm-decision-implementation-table-cell>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-row let-columns="columns">
+    <ng-container formArrayName="rows">
+      <tr [formGroupName]="getRowIndex(row)" [id]="row.value.id" [pSelectableRow]="rowData">
+        <td *ngFor="let header of columns; let headerIndex = index"
+          [id]="(createCellId(header.value.id, row.controls.cells)).value.id" formArrayName="cells"
+          [contextMenu]="contextMenu"
+          [contextMenuSubject]="{ row: row, header: header, cell:createCellId(header.value.id, row.controls.cells) }">
+          <ng-container [formGroupName]="getCellIndex(row, header)">
+            <dfm-decision-implementation-table-cell formControlName="text" [isReadOnly]="isReadOnly"
+              [cellType]="cellType.Cell"></dfm-decision-implementation-table-cell>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-container>
+  </ng-template>
+</p-table>
+<context-menu #contextMenu [disabled]="isReadOnly">
+  <ng-template (execute)="addColumnBefore($event)" [visible]="doesAddColumnMenuItemVisible" contextMenuItem>
+    {{'resources.addColumnBefore' | translate }}
+  </ng-template>
+  <ng-template (execute)="addColumnAfter($event)" [visible]="doesAddColumnMenuItemVisible" contextMenuItem>
+    {{'resources.addColumnAfter' | translate }}
+  </ng-template>
+  <ng-template (execute)="addDuplicateColumnAfter($event)" [visible]="doesAddColumnMenuItemVisible" contextMenuItem>
+    {{ 'resources.addDuplicateColumnAfter' | translate }}
+  </ng-template>
+  <ng-template (execute)="removeColumn($event)" [visible]="doesRemoveColumnMenuItemVisible" contextMenuItem>
+    {{ 'resources.removeColumn' | translate }}
+  </ng-template>
+  <ng-template (execute)="addRowBefore($event)" [visible]="doesAddRowMenuItemVisible" contextMenuItem>
+    {{ 'resources.addRowBefore' | translate }}
+  </ng-template>
+  <ng-template (execute)="addRowAfter($event)" [visible]="doesAddRowMenuItemVisible" contextMenuItem>
+    {{ 'resources.addRowAfter' | translate }}
+  </ng-template>
+  <ng-template (execute)="addDuplicateRowAfter($event)" [visible]="doesAddRowMenuItemVisible" contextMenuItem>
+    {{ 'resources.addDuplicateRowAfter' | translate }}
+  </ng-template>
+  <ng-template (execute)="removeRow($event)" [visible]="doesRemoveRowMenuItemVisible" contextMenuItem>
+    {{ 'resources.removeRow' | translate }}
+  </ng-template>
+  <ng-template (execute)="copyRow($event)" [visible]="doesAddRowMenuItemVisible" contextMenuItem>
+    {{ 'resources.copyRow' | translate }}
+  </ng-template>
+  <ng-template (execute)="pasteRow($event)" [visible]="doesAddRowMenuItemVisible" contextMenuItem>
+    {{ 'resources.pasteRow' | translate }}
+  </ng-template>
+  <ng-template (execute)="copyCell($event)" [visible]="doescopyCellMenuItemVisible" contextMenuItem>
+    {{ 'resources.copyCell' | translate }}
+  </ng-template>
+  <ng-template (execute)="pasteCell($event)" [visible]="doescopyCellMenuItemVisible" contextMenuItem>
+    {{ 'resources.pasteCell' | translate }}
+  </ng-template>
+</context-menu>

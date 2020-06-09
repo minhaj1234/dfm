@@ -1,0 +1,24 @@
+@import '~@nebular/theme/styles/globals';
+@import '~quill/dist/quill.snow.css';
+@import '~eva-icons/style/eva-icons.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeng/resources/themes/nova-light/theme.css';
+
+@import './assets/css/themes.scss';
+@import './assets/css/custom-webkit-scroll.scss';
+@import './assets/css/object-list.scss';
+@import './assets/css/context-menu';
+@import './assets/css/jump-menu';
+@import './assets/css/decision-answer';
+@import './assets/css/go-js-diagram';
+@import './assets/css/list-item';
+@import './assets/css/form-controls';
+@import './assets/css/disable-text-selection';
+@import './assets/css/icon';
+@import './assets/css/tab';
+@import './assets/css/print.scss';
+@import './assets/css/login.scss';
+
+@include nb-install() {
+  @include nb-theme-global();
+}

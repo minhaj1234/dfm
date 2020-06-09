@@ -1,0 +1,17 @@
+<div #autocompleteObjects>
+  <input type="text"
+    class="form-control search-control"
+    (input)="onSearchInput()"
+    (click)="onSearchClicked()"
+    [formControl]="searchControl"
+    placeholder="{{ 'resources.typeToSelect' | translate }}" />
+  <nb-list class="autocomplete-list" *ngIf="isAutocompleteListDisplayed && autocompleteSearchList.length > 0">
+    <nb-list-item
+      *ngFor="let item of autocompleteSearchList"
+      class="list-item"
+      id="item-{{item.id}}"
+      (click)="onListItemSelected(item)">
+      {{ item.name }}
+    </nb-list-item>
+  </nb-list>
+</div>

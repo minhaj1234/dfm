@@ -1,0 +1,26 @@
+<div class="print-diagram-container">
+  <h2>{{ diagram.name }}</h2>
+
+  <div *ngIf="diagram.description">
+    <p [innerHTML]="diagram.description"></p>
+  </div>
+
+  <div #diagramImage class="diagram-image mb-4 mt-4"></div>
+
+  <div *ngIf="includeRelatedObjects">
+    <div class="related-decisions" *ngIf="doDisplayRelatedObjects(diagram.decisions)">
+      <h3 class="center-heading">{{ 'resources.decisions' | translate }}</h3>
+      <dfm-print-object *ngFor="let item of getObjectsInAlphabeticalOrder(diagram.decisions)" [object]="item" [topLevelHeading]="false"></dfm-print-object>
+    </div>
+  
+    <div class="related-input-data" *ngIf="doDisplayRelatedObjects(diagram.inputDatas)">
+      <h3 class="center-heading">{{ 'resources.inputDatas' | translate }}</h3>
+      <dfm-print-object *ngFor="let item of getObjectsInAlphabeticalOrder(diagram.inputDatas)" [object]="item" [topLevelHeading]="false"></dfm-print-object>
+    </div>
+  
+    <div class="related-knowledge-source" *ngIf="doDisplayRelatedObjects(diagram.knowledgeSources)">
+      <h3 class="center-heading">{{ 'resources.knowledgeSources' | translate }}</h3>
+      <dfm-print-object *ngFor="let item of getObjectsInAlphabeticalOrder(diagram.knowledgeSources)" [object]="item" [topLevelHeading]="false"></dfm-print-object>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+@import '../../../../../assets/css/themes.scss';
+
+.search-list {
+  max-height: calc(100vh - #{nb-theme(search-list-top-margin)});
+  background-color: #ffffff;
+}
+
+.item-type {
+  color: #7c7c7c;
+}
+
+.item-name {
+  color: #9b9b9b;
+  cursor: pointer;
+}
+
+.remove-item {
+  font-size: 1.5rem;
+  cursor: pointer;
+  float: right;
+}

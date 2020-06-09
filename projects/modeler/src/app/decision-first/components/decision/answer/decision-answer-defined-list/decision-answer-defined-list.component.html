@@ -1,0 +1,21 @@
+<div class="input-group mb-3">
+  <input type="text" id="newAnswerItemInput" class="form-control" [(ngModel)]="newAnswerItemValue" />
+  <div class="input-group-append">
+    <button [disabled]="newAnswerItemValue.length === 0" class="btn btn-outline-secondary" id="btnAddAnswerItem" (click)="addAnswerItem()">
+      {{ 'resources.add' | translate }}
+    </button>
+  </div>
+</div>
+<div [formGroup]="answerForm">
+  <ul class="list-group list-answer-items" #listAnswerItems [scrollTop]="listAnswerItems.scrollHeight">
+    <li class="list-group-item" id="answer-item-{{ answerItem.id }}" *ngFor="let answerItem of answerItems">
+      <span>{{ answerItem.value }}</span>
+      <i class="nb-close remove-answer-item" id="remove-answer-item-{{ answerItem.id }}" (click)="removeAnswerItem(answerItem)"></i>
+    </li>
+  </ul>
+  <p>{{ 'resources.defaultAnswer' | translate }}</p>
+  <select class="form-control" id="defaultAnswerItem" formControlName="defaultAnswerItemId">
+    <option></option>
+    <option *ngFor="let answerItem of answerItems" id="default-answer-item-{{ answerItem.id }}" [value]="answerItem.id">{{ answerItem.value }}</option>
+  </select>
+</div>

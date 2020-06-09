@@ -1,0 +1,28 @@
+.select-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+img {
+  width: 32px;
+  height: 32px;
+}
+
+@media screen and (max-width: 400px) {
+  .dropdown-item {
+    width: 140;
+    white-space: normal;
+  }
+}
+
+.dropdown-list-button {
+  border: none;
+  background-color: #ffffff;
+  cursor: pointer;
+}

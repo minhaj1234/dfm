@@ -1,0 +1,19 @@
+<div *ngIf="tag" class="mt-1">
+  <div class="edit-panel pb-3">
+    <div class="mb-1">
+      <button (click)="onDeleteClicked()"class="btn btn-info mr-1">{{ 'resources.delete' | translate }}</button>
+      <input [(ngModel)]="tagName" type="text" class="form-control search-control mr-1"/>
+      <button [disabled]="!canRename()" (click)="onRenameClicked()" class=" btn btn-info mr-1">{{ 'resources.rename' | translate }}</button>
+    </div>
+    <div class="mb-1">
+      <core-autocomplete-list 
+        (updateSearchList)="onSearchListUpdate($event)" 
+        (selectListItem)="onTagSelected($event)"
+        (resetSearchList)="onResetSearchList()"
+        [autocompleteSearchList]="(autocompleteSearchList$ | async)"
+        [searchDebounceTime]="config.searchDebounceTime">
+      </core-autocomplete-list>
+      <button [disabled]="!canMerge()" (click)="onMergeClicked()" class="btn btn-info">{{ 'resources.mergeInto' | translate }}</button>
+    </div>
+  </div>
+</div>

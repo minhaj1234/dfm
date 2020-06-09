@@ -1,0 +1,13 @@
+<div class="palettes-container">
+  <div class="links-palette">
+    <p>{{ 'resources.links' | translate | uppercase }}</p>
+    <dfm-go-js-links-palette [diagram]="diagram"></dfm-go-js-links-palette>
+  </div>
+  <div class="add-object-palette">
+    <p>{{ 'resources.objects' | translate | uppercase }}</p>
+    <dfm-go-js-add-object-palette></dfm-go-js-add-object-palette>
+  </div>
+  <div class="existing-object-palette">
+    <dfm-go-js-existing-objects-palette [existingObjects]="existingObjects"></dfm-go-js-existing-objects-palette>
+  </div>
+</div>

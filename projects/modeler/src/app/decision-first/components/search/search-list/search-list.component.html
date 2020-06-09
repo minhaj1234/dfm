@@ -1,0 +1,15 @@
+<h5 class="mb-3" *ngIf="searchTerm !== undefined">{{ 'resources.resultsFor' | translate }} "{{ searchTerm }}":</h5>
+
+<nb-list class="search-list pt-3 pb-2 pl-2 pr-2">
+  <nb-list-item *ngFor="let searchItem of searchList; trackBy: trackByFn">
+    <dfm-preview-container [to]="searchItem">
+      <dfm-search-list-item  
+        [searchItem]="searchItem" 
+        [isReadOnly]="isReadOnly"
+        (clickOpenTab)="onClickOpenTab()"
+        (clickDeleteObject)="onClickDeleteObject()">
+      </dfm-search-list-item>
+    </dfm-preview-container>
+    <hr *ngIf="isShowDelimiter" />
+  </nb-list-item>
+</nb-list>

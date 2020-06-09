@@ -1,0 +1,23 @@
+<nb-card>
+  <form [formGroup]="formGroup">
+    <div class="form-group">
+      <label for="name">{{ 'resources.name' | translate }}</label>
+      <core-edit-multiple-lines-control id="name" formControlName="name" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-group">
+      <label for="description">{{ 'resources.description' | translate }}</label>
+      <core-edit-multiple-lines-control id="description" formControlName="description" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-group">
+      <label for="url">{{ 'resources.url' | translate }}</label>
+      <input type="text" id="url" class="form-control" formControlName="url" />
+    </div>
+
+    <button type="button" class="btn btn-info btn-block add-event" (click)="addObject()"
+      [disabled]="formGroup.invalid">
+      {{ 'resources.addEvent' | translate }}
+    </button>
+  </form>
+</nb-card>

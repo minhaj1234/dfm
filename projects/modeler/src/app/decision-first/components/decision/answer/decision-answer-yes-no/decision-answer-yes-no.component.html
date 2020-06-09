@@ -1,0 +1,5 @@
+<div class="d-flex flex-row justify-content-center align-items-center" [formGroup]="answerForm">
+  <nb-radio-group name="yesNo" formControlName="yesNo">
+    <nb-radio id="item-{{ item.value }}" *ngFor="let item of yesNoItems" [value]="item.value">{{ item.label | translate }}</nb-radio>
+  </nb-radio-group>
+</div>

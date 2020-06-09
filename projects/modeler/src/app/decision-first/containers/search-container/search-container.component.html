@@ -1,0 +1,23 @@
+<nb-card class="h-100">
+  <div class="row mt-3 ml-0 mr-0">
+    <div class="col-6 col-md-3">
+      <dfm-search-tools></dfm-search-tools>
+    </div>
+    <div class="col-6 col-md-6">
+      <div class="mb-4">
+        <dfm-search-control [searchAction]="fromModelerStore.UpdateSearchForMainSearchList" [searchTerm]="searchTerm$ | async">
+        </dfm-search-control>
+      </div>
+      <div class="pb-2">
+        <dfm-search-list [searchList]="searchList$ | async" [searchTerm]="searchTerm$ | async" [isReadOnly]="isReadOnlySession$ | async"></dfm-search-list>
+      </div>
+      <div>
+        <core-pagination-load-more
+          [store]="modelerStore"
+          [pagination]="pagination$ | async"
+          [getMoreAction]="fromModelerStore.LoadSpecificPageForMainSearchList">
+        </core-pagination-load-more>
+      </div>
+    </div>
+  </div>
+</nb-card>

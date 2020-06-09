@@ -1,0 +1,10 @@
+{
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "@nebular/theme": "nebularTheme",
+        "@ngrx/store": "ngrxStore"
+      }
+    }
+  }
+}

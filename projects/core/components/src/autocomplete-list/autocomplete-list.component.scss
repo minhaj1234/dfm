@@ -1,0 +1,36 @@
+
+.search-control {
+  width: 130px;
+  background: transparent;
+  border: 1px solid #ced4da;
+  margin-right: 4px;
+}
+
+.form-control {
+  box-shadow: none !important;
+}
+
+.autocomplete-list {
+  position: absolute;
+  z-index: 1;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 2px 2px 3px 3px #ccc;
+  -moz-box-shadow: 2px 2px 3px 3px #ccc;
+  box-shadow: 2px 2px 3px 3px #ccc;
+}
+
+nb-list-item {
+  padding: 10px 20px 10px 20px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background: #006f85;
+  color: #ffffff;
+}
+
+.add-object {
+  color: #006f85;
+  font-weight: bold;
+}

@@ -1,0 +1,22 @@
+@import '../../../../../assets/css/themes.scss';
+
+.palette-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.paletteDiv {
+  width: 100%;
+  flex-grow: 1;
+  margin-top: 10px;
+}
+
+.close-button {
+  background-color: #ffffff;
+  border-width: 0px;
+  color: nb-theme(darken-primary-color);
+  font-weight: 500;
+  margin-top: 10px;
+}

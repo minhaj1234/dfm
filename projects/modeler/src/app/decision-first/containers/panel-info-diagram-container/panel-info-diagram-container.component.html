@@ -1,0 +1,20 @@
+<div *ngIf="isShowEditSingleDiagramObjectComponent" class="panel-info-diagram-container">
+  <div
+    class="panel-info-diagram-desktop-layout"
+    mwlResizable
+    [resizeEdges]="{ left: true }"
+    (resizing)="onResizingPanelInfoDiagramDesktop($event)"
+    [ngStyle]="panelInfoDiagramDesktopStyle">
+    <dfm-edit-single-diagram-object-container
+      [selectedObject]="selectedNode"
+      [diagram]="diagram"
+      [isReadOnly]="isReadOnly">
+    </dfm-edit-single-diagram-object-container>
+  </div>
+
+  <div class="panel-info-diagram-mobile-layout">
+    <dfm-info-single-diagram-object
+      [selectedObject]="selectedNode">
+    </dfm-info-single-diagram-object>
+  </div>
+</div>

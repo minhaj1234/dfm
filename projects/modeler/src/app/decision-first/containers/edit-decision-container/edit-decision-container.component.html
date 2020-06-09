@@ -1,0 +1,197 @@
+<nb-card class="h-100">
+  <div
+    [ngClass]="{'row': !(decisionTableExpanded || requirementNetworkExpanded), 'edit-graphable-container': !(decisionTableExpanded || requirementNetworkExpanded)}"
+    class="no-margin h-100" #editDecisionTabContainer *ngIf="state$ | async as state">
+    <div *ngIf="!(decisionTableExpanded || requirementNetworkExpanded)" class="jump-menu col-md-3">
+      <dfm-jump-menu [object]="state.decision" [anchors]="anchors"></dfm-jump-menu>
+    </div>
+    <div class="tab-item center-block"
+      [ngClass]="{'col-10 col-md-6': !(decisionTableExpanded || requirementNetworkExpanded), 'decision-tab-table-container': (decisionTableExpanded || requirementNetworkExpanded) }">
+      <div class="content-block" [hidden]="(decisionTableExpanded || requirementNetworkExpanded)" #basicDetailsAnchor>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon" [hidden]="showBasicDetails"
+            (click)="onClickShowBasicDetails()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon" [hidden]="!showBasicDetails"
+            (click)="onClickShowBasicDetails()"></i>
+          <h5> {{ 'resources.basicDetails' | translate }}</h5>
+        </div>
+        <div [hidden]="!showBasicDetails">
+          <dfm-edit-decision [editObject]="state.decision" [isReadOnly]="state.isReadOnlySession"></dfm-edit-decision>
+        </div>
+      </div>
+
+      <div [hidden]="(decisionTableExpanded || requirementNetworkExpanded)" class="content-block"
+        #questionAndAnswersAnchor>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon" [hidden]="showQA" (click)="onClickShowQA()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon" [hidden]="!showQA" (click)="onClickShowQA()"></i>
+          <h5> {{ 'resources.questionAndAnswers' | translate }}</h5>
+        </div>
+        <dfm-question-and-answers [hidden]="!showQA" [decision]="state.decision" [isReadOnly]="state.isReadOnlySession">
+        </dfm-question-and-answers>
+      </div>
+
+      <div class="content-block" [hidden]="decisionTableExpanded" #requirementsAnchor>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon"
+            [hidden]="showDependencies || requirementNetworkExpanded || decisionTableExpanded"
+            (click)="onClickShowDependencies()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon"
+            [hidden]="!showDependencies || requirementNetworkExpanded || decisionTableExpanded"
+            (click)="onClickShowDependencies()"></i>
+          <h5 [hidden]="requirementNetworkExpanded">{{ 'resources.dependencies' | translate }}</h5>
+        </div>
+        <div [hidden]="!showDependencies">
+          <dfm-graphable-generated-requirements-diagram caption="{{ 'resources.dependencyNetwork' | translate }}"
+            [graphable]="state.decision" [expanded]="requirementNetworkExpanded" (expand)="expandRequirementNetwork()">
+          </dfm-graphable-generated-requirements-diagram>
+          <dfm-relation-objects-display [hidden]="requirementNetworkExpanded"
+            caption="{{ 'resources.diagrams' | translate }}" [to]="state.decision" acceptsType="Diagram"
+            relationObjectsKey="diagrams" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-graphable-primary-diagram [hidden]="requirementNetworkExpanded" [graphable]="state.decision"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-graphable-primary-diagram>
+          <dfm-relation-objects-display [hidden]="requirementNetworkExpanded"
+            caption="{{ 'resources.requiredBy' | translate }} {{ 'resources.decisions' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="Decision" relationObjectsKey="requiredByDecisions" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display [hidden]="requirementNetworkExpanded"
+            caption="{{ 'resources.requiredBy' | translate }} {{ 'resources.knowledgeSources' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="KnowledgeSource" relationObjectsKey="requiredByKnowledgeSources"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display [hidden]="requirementNetworkExpanded"
+            caption="{{ 'resources.requires' | translate }} {{ 'resources.decisions' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="Decision" relationObjectsKey="requiresDecisions" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display [hidden]="requirementNetworkExpanded"
+            caption="{{ 'resources.requires' | translate }} {{ 'resources.inputData' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="InputData" relationObjectsKey="requiresInputData" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display [hidden]="requirementNetworkExpanded"
+            caption="{{ 'resources.requires' | translate }} {{ 'resources.knowledgeSources' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="KnowledgeSource" relationObjectsKey="requiresKnowledgeSources"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+        </div>
+      </div>
+
+      <div class="content-block" #implementationAnchor>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon"
+            [hidden]="showImplementation || requirementNetworkExpanded || decisionTableExpanded"
+            (click)="onClickShowImplementation()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon"
+            [hidden]="!showImplementation || requirementNetworkExpanded || decisionTableExpanded"
+            (click)="onClickShowImplementation()"></i>
+          <h5 [hidden]="(decisionTableExpanded || requirementNetworkExpanded)">
+            {{ 'resources.implementation' | translate }}</h5>
+        </div>
+        <div [hidden]="!showImplementation">
+          <div [hidden]="requirementNetworkExpanded" class="mb-2">{{ 'resources.tableNotes' | translate }}</div>
+
+          <dfm-decision-implementation-table-container [hidden]="requirementNetworkExpanded"
+            (expand)="expandDecisionTable()" [isReadOnly]="state.isReadOnlySession" [decision]="state.decision"
+            [tableContainer]="tabContainer" [expanded]="decisionTableExpanded">
+          </dfm-decision-implementation-table-container>
+
+          <div [hidden]="(decisionTableExpanded || requirementNetworkExpanded)">
+            <dfm-relation-objects-display caption="{{ 'resources.implementationComponents' | translate }}"
+              [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+              [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+              acceptsType="ImplementationComponent" relationObjectsKey="implementationComponents"
+              [isReadOnly]="state.isReadOnlySession">
+            </dfm-relation-objects-display>
+          </div>
+        </div>
+      </div>
+
+      <div [hidden]="(decisionTableExpanded || requirementNetworkExpanded)" class="content-block" #organizationContext>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon" [hidden]="showQC" (click)="onClickShowQC()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon" [hidden]="!showQC" (click)="onClickShowQC()"></i>
+          <h5>{{ 'resources.organizationContext' | translate }}</h5>
+        </div>
+        <div [hidden]="!showQC">
+          <dfm-relation-objects-display caption="{{ 'resources.organizationsOwnedBy' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="Organization" relationObjectsKey="organizationsOwnsDecisions"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display caption="{{ 'resources.organizationsMadeBy' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="Organization" relationObjectsKey="organizationsMakesDecisions"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display caption="{{ 'resources.organizationsImpacts' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="Organization" relationObjectsKey="organizationsImpactedByDecisions"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+        </div>
+      </div>
+
+      <div [hidden]="(decisionTableExpanded || requirementNetworkExpanded)" class="content-block" #applicationContext>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon" [hidden]="showAC" (click)="onClickShowAC()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon" [hidden]="!showAC" (click)="onClickShowAC()"></i>
+          <h5>{{ 'resources.applicationContext' | translate }}</h5>
+        </div>
+        <div [hidden]="!showAC">
+          <dfm-relation-objects-display caption="{{ 'resources.businessObjectives' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="BusinessObjective" relationObjectsKey="businessObjectives"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display caption="{{ 'resources.processes' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision"
+            acceptsType="Process" relationObjectsKey="processes" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display caption="{{ 'resources.events' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision" acceptsType="Event"
+            relationObjectsKey="events" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display caption="{{ 'resources.systems' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [to]="state.decision" acceptsType="System"
+            relationObjectsKey="systems" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+        </div>
+      </div>
+
+      <div class="content-block" #commentsAnchor [hidden]="(decisionTableExpanded || requirementNetworkExpanded)">
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon" [hidden]="showComments"
+            (click)="onClickShowComments()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon" [hidden]="!showComments"
+            (click)="onClickShowComments()"></i>
+          <h5>{{ 'resources.comments' | translate }}</h5>
+        </div>
+        <div [hidden]="!showComments">
+          <dfm-comments-container *ngIf="state.decision" [addAction]="fromModelerStore.AddRelatedObjectToDecision"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromDecision" [object]="state.decision"
+            [comments]="state.decision.comments" [authenticatedUser]="state.authenticatedUser"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-comments-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</nb-card>

@@ -1,0 +1,26 @@
+@import '../../../../../assets/css/themes.scss';
+
+.active {
+  cursor: default !important;
+  font-weight: 500;
+  color: #000 !important;
+}
+
+.jump-menu-items div {
+  color: nb-theme(darken-primary-color);
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 0.4rem;
+  word-wrap: break-word;
+}
+
+.jump-menu-title {
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  font-size: 1.3rem;
+  word-wrap: break-word;
+}
+
+:host {
+  width: 100%;
+}

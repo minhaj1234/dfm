@@ -1,0 +1,27 @@
+@import '../../../../../assets/css/themes.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: nb-theme(accordion-padding-left);
+  padding-right: nb-theme(accordion-padding-right);
+}
+
+.header-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.header-icon {
+  font-size: 24px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.search-control {
+  padding-bottom: 10px;
+  padding-left: nb-theme(accordion-padding-left);
+  padding-right: nb-theme(accordion-padding-right);
+}

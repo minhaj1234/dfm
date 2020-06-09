@@ -1,0 +1,14 @@
+<div [formGroup]="answerForm" class="answer-date-time-container">
+  <div class="form-group">
+    <label for="min">{{ 'resources.min' | translate }}</label>
+    <core-date-time-picker formControlName="minimumDateTime"></core-date-time-picker>
+  </div>
+  <div class="form-group">
+    <label for="min">{{ 'resources.max' | translate }}</label>
+    <core-date-time-picker formControlName="maximumDateTime"></core-date-time-picker>
+  </div>
+  <div class="form-group">
+    <label for="min">{{ 'resources.default' | translate }}</label>
+    <core-date-time-picker formControlName="defaultDateTime"></core-date-time-picker>
+  </div>
+</div>

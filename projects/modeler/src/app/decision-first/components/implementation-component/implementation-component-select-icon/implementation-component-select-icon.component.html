@@ -1,0 +1,21 @@
+<div class="select-icon-container">
+  <label for="implementationComponentIcon">{{ 'resources.icon' | translate }}</label>
+  <div ngbDropdown class="ml-1 icons-dropdown-list" (click)="onSelectIconClick()">
+    <div 
+      ngbPopover="{{ getSelectedIconTooltip() }}"
+      triggers="hover"
+      container="body">
+      <button class="dropdown-list-button" ngbDropdownToggle>
+        <img [src]="getSelectedIconSafeResourceUrl()">
+      </button>
+    </div>
+    <div ngbDropdownMenu *ngIf="!isReadOnly">
+      <div clas="dropdown-item" ngbDropdownItem *ngFor="let icon of icons; trackBy: trackByFn" (click)="onSelectIcon(icon.id)">
+        <img [src]="transformToSafeSvgResourceUrl(icon)">
+        <div class="ml-2">
+          {{ icon.name }}
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>

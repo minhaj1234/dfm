@@ -1,0 +1,31 @@
+<div class="row d-flex align-items-center mr-0">
+  <div class="datepicker-container">
+    <div class="input-group">
+      <input
+        class="form-control datePicker"
+        ngbDatepicker
+        #datepicker="ngbDatepicker"
+        [(ngModel)]="date"
+        (ngModelChange)="onDateChange($event)"
+        [showWeekdays]="false"
+        (click)="manageDatepicker(datepicker)"
+        [disabled]="isReadOnly"
+        readonly
+      />
+      <div class="input-group-append" [hidden]="isReadOnly">
+        <span class="input-group-text">
+          <i class="nb-close button-icon" id="removeIcon" (click)="clearDateTime()"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="timepicker-container" *ngIf="showTime">
+    <ngb-timepicker
+      [(ngModel)]="time"
+      (ngModelChange)="onTimeChange($event)"
+      [meridian]="!isReadOnly"
+      [spinners]="false"
+      [readonlyInputs]="!time || isReadOnly"
+    ></ngb-timepicker>
+  </div>
+</div>

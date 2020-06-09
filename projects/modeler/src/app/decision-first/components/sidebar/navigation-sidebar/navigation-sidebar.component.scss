@@ -1,0 +1,22 @@
+.item {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.item-icon {
+  font-size: 24px;
+}
+
+.item-text {
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 5px;
+}
+
+.language-select {
+  width: 70px;
+  margin-left: auto;
+}

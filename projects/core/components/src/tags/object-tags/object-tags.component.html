@@ -1,0 +1,9 @@
+<div class="tags-container pb-2" *ngIf="tags">
+  <core-tag
+    *ngFor="let tag of tags"
+    [addTabAction]="addTabAction"
+    [id]="tag.id"
+    [text]="tag.name"
+    size="small">
+  </core-tag>
+</div>

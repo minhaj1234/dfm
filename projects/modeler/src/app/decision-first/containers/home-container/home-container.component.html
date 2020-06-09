@@ -1,0 +1,18 @@
+<nb-card class="h-100 mb-0">
+  <div class="container container-custom mt-3 ml-30 mr-30">
+    <div class="mb-3">
+      <dfm-search-control [searchAction]="fromModelerStore.UpdateSearchForHomeSearchList"></dfm-search-control>
+    </div>
+    <div class="pb-2">
+      <dfm-search-list class="mb-2" [searchList]="searchList$ | async" [searchTerm]="searchTerm$ | async" [isReadOnly]="isReadOnlySession$ | async">
+      </dfm-search-list>
+    </div>
+    <div>
+      <core-pagination-load-more
+        [store]="modelerStore"
+        [pagination]="pagination$ | async"
+        [getMoreAction]="fromModelerStore.LoadSpecificPageForHomeSearchList">
+      </core-pagination-load-more>
+    </div>
+  </div>
+</nb-card>

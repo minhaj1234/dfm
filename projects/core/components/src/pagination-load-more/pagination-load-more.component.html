@@ -1,0 +1,19 @@
+<div *ngIf="pagination" class="text-right">
+  <div class="loaded-results">
+    <span>{{ 'resources.loaded' | translate }} {{currentlyLoadedCount}} {{ 'resources.of' | translate }} {{pagination.totalElements}}</span>
+  </div>
+
+  <div class="row">
+    <div class="col-6 pr-1">
+      <button class="btn btn-info btn-block get-more-results" [disabled]="isFirstPage" (click)="getPreviousPage()">
+        {{ 'resources.previous' | translate }}
+      </button>
+    </div>
+
+    <div class="col-6 pl-1">
+      <button class="btn btn-info btn-block get-more-results" [disabled]="isLastPage" (click)="getNextPage()">
+        {{ 'resources.next' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

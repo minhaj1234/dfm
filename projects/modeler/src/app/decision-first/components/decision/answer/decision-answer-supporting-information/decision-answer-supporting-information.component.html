@@ -1,0 +1,6 @@
+<div [formGroup]="answerForm">
+  <div class="form-group">
+    <label for="supportingInformation">{{ 'resources.supportingInformation' | translate }}</label>
+    <core-edit-multiple-lines-control [rows]="2" formControlName="supportingInformation" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+  </div>
+</div>

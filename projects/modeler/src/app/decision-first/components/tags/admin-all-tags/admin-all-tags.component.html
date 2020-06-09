@@ -1,0 +1,18 @@
+<h1>{{ 'resources.allTags' | translate }}</h1>
+<div class="mb-4" *ngFor="let tag of tags">
+  <core-tag
+    [addTabAction]="fromModelerStore.AddTab"
+    [id]="tag.id"
+    [text]="tag.name"
+    size="medium">
+  </core-tag>
+  <h6>
+    {{ 'resources.countObjects' | translate }} -
+    <span id="count-link-objects-tag-{{ tag.id }}">{{ tag.countTagEntities }}</span>
+  </h6>
+</div>
+<core-pagination-load-more
+  [store]="modelerStore"
+  [pagination]="pagination$ | async"
+  [getMoreAction]="fromModelerStore.LoadSpecificPageForTagsList">
+</core-pagination-load-more>

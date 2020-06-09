@@ -1,0 +1,13 @@
+<div *ngIf="tag" class="mt-1">
+  <core-tag [id]="tag.id" [text]="tag.name" size="large"></core-tag>
+  <div *ngFor="let relationPath of tagRelationObjectPaths" class="mb-1">
+    <div *ngIf="tag[relationPath]?.length > 0">
+      <h3 class="pt-3 pb-3">{{ geti18nObjectRelationName(relationPath) | translate }}</h3>
+      <div *ngFor="let entity of tag[relationPath]">
+        <dfm-preview-container [to]="entity">
+          <dfm-tag-entity-display [entity]="entity"></dfm-tag-entity-display>
+        </dfm-preview-container>
+      </div>
+    </div>
+  </div>
+</div>

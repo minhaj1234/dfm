@@ -1,0 +1,18 @@
+{
+  "ngPackage": {
+    "lib": {
+			"umdModuleIds": {
+        "@nebular/theme": "theme",
+        "@ngrx/store": "store",
+        "@ng-bootstrap/ng-bootstrap": "ngBootstrap",
+        "@ngx-translate/core": "ngxTranslateCore",
+        "ng-drag-drop": "ngDragDrop",
+        "ngx-contextmenu": "ngxContextMenu",
+        "ngx-quill": "ngxQuill",
+        "ngx-take-until-destroy": "ngxTakeUntilDestroy",
+        "ngrx-store": "ngrxStore",
+        "keycode-js": "keycodeJs"
+			}
+		}
+  }
+}

@@ -1,0 +1,14 @@
+<div class="mt-3" *ngIf="object">
+  <div class="jump-menu-title">
+    {{ getI18nResourceByString(object.className) | translate }}
+  </div>
+  <div class="jump-menu-items">
+    <ng-container *ngFor="let anchorType of getAnchorsTypes()">
+      <div *ngIf="isAnchorExists(anchorType)"
+        [ngClass]="{active: isActive(anchorType)}"
+        (click)="moveToAnchor(anchorType)">
+        {{ getI18nResourceByString(anchorType) | translate}}
+      </div>
+    </ng-container>
+  </div>
+</div>

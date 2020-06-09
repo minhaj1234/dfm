@@ -1,0 +1,26 @@
+nb-layout-column {
+  padding-top: 38px !important;
+}
+
+.login-form-container {
+  justify-content: center;
+}
+
+.forms-links-container {
+  display: flex;
+  justify-content: flex-end;
+
+  div {
+    cursor: pointer;
+    color: #62b1e8;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+a {
+  color: #0000EE;
+  text-decoration: underline;
+}

@@ -1,0 +1,18 @@
+<ng-template #previewTemplate>
+  <div class="diagram-preview">
+    <dfm-go-js-preview-diagram *ngIf="isDiagramPreview()" [diagram]="previewObject"></dfm-go-js-preview-diagram>
+  </div>
+  <div *ngIf="!isDiagramPreview()">
+    <dfm-object-preview [object]="previewObject"></dfm-object-preview>
+  </div>
+</ng-template>
+    
+<div class="search-item pt-1"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  #previewPopover="ngbPopover"
+  [ngbPopover]="previewTemplate"
+  container="body"
+  triggers="manual">
+  <ng-content></ng-content>
+</div>

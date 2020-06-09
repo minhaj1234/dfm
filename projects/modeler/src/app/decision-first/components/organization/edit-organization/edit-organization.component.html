@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label for="organizationName">{{ 'resources.name' | translate }}</label>
+    <core-edit-multiple-lines-control id="organizationName" formControlName="name" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+  </div>
+  <div class="form-group">
+    <label for="organizationDescription">{{ 'resources.description' | translate }}</label>
+    <core-edit-multiple-lines-control id="organizationDescription" formControlName="description" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+  </div>
+
+  <core-object-tags
+    [addTabAction]="fromModelerStore.AddTab"
+    [tags]="editObject.tags"
+    *ngIf="editObject">
+  </core-object-tags>
+
+  <div class="form-group">
+    <label for="type">{{ 'resources.type' | translate }}</label>
+    <select id="type" class="form-control" formControlName="type">
+      <option value="{{ organizationType }}" *ngFor="let organizationType of getOrganizationTypeValues">
+        {{ getI18nNameOrganizationType(organizationType.toLowerCase()) | translate }}
+      </option>
+    </select>
+  </div>
+
+  <core-input-url formControlName="url"></core-input-url>
+</form>

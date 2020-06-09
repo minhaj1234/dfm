@@ -1,0 +1,3 @@
+<dfm-navigation-sidebar *ngIf="(currentSidebarPanel$ | async) === SidebarPanel.Navigation"></dfm-navigation-sidebar>
+<dfm-add-object-sidebar *ngIf="(currentSidebarPanel$ | async) === SidebarPanel.AddObjects"></dfm-add-object-sidebar>
+<dfm-existing-objects-sidebar *ngIf="(currentSidebarPanel$ | async) === SidebarPanel.ExistingObjects"></dfm-existing-objects-sidebar>

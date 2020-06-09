@@ -1,0 +1,6 @@
+<div class="header-container container-fluid">
+  <i class="sidebar-control-button nb-menu sidebar-toggle icon-gray-color" (click)="sidebarToggle()"></i>
+  <core-logo></core-logo>
+  <span *ngIf="environmentName==='dev'">{{environmentName | uppercase}}</span>
+  <dfm-autocomplete-search-control class="mr-2"></dfm-autocomplete-search-control>
+</div>

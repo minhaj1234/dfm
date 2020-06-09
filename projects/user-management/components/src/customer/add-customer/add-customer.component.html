@@ -1,0 +1,27 @@
+<nb-card>
+  <form [formGroup]="formGroup">
+    <div class="form-group">
+      <label for="customerName">{{ 'resources.name' | translate }}</label>
+      <core-edit-multiple-lines-control id="name" formControlName="name" [isRichEditor]="false" [maxTextLength]="MaxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-inline form-group">
+      <label class="label-form-inline" for="numberOfUsers">{{ 'resources.numberOfUsers' | translate }}</label>
+      <input type="number" class="form-control number-of-users" id="numberOfUsers" formControlName="numberOfUsers" />
+    </div>
+
+    <div class="form-inline form-group">
+      <label class="label-form-inline" for="validDate">{{ 'resources.validDate' | translate }}</label>
+      <core-date-time-picker class="date-control" id="validDate" [showTime]="false" formControlName="validDate"></core-date-time-picker>
+    </div>
+
+    <div class="form-group">
+      <label for="domains">{{ 'resources.domains' | translate }}</label>
+      <textarea autosize class="form-control" rows="2" id="domains" formControlName="domains"></textarea>
+    </div>
+
+    <button type="button" class="btn btn-info btn-block" (click)="addObject()" [disabled]="formGroup.invalid">
+      {{ 'resources.addCustomer' | translate }}
+    </button>
+  </form>
+</nb-card>

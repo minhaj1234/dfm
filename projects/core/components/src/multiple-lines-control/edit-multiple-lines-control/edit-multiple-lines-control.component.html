@@ -1,0 +1,25 @@
+<quill-editor
+  (onEditorCreated)="onEditorCreated($event)"
+  (onContentChanged)="onContentChanged($event)"
+  [contextMenu]="editorContextMenu"
+  [readOnly]="isReadOnly"
+  [styles]="{'min-height': getMinHeight()}"
+  [formControl]="form.controls['editor']"
+  placeholder="">
+  <div quill-editor-toolbar class="rich-text-editor-toolbar" [hidden]="isReadOnly || !isRichEditor">
+    <button tabindex="-1" class="ql-bold" ngbTooltip="{{ 'resources.bold' | translate }}" container="body" placement="top"></button>
+    <button tabindex="-1" class="ql-strike" ngbTooltip="{{ 'resources.strike' | translate }}" container="body" placement="top"></button>
+    <button tabindex="-1" class="ql-italic" ngbTooltip="{{ 'resources.italic' | translate }}" container="body" placement="top"></button>
+    <button tabindex="-1" class="ql-underline" ngbTooltip="{{ 'resources.underline' | translate }}" container="body" placement="top"></button>
+    <button tabindex="-1" class="ql-list" value="bullet" ngbTooltip="{{ 'resources.bulletList' | translate }}" container="body" placement="top"></button>
+    <button tabindex="-1" class="ql-list" value="ordered" ngbTooltip="{{ 'resources.orderedList' | translate }}" container="body" placement="top"></button>
+  </div>
+</quill-editor>
+<context-menu [disabled]="isReadOnly || !isRichEditor">
+  <ng-template contextMenuItem (execute)="formatText('bold', 'true')">{{ 'resources.bold' | translate }}</ng-template>
+  <ng-template contextMenuItem (execute)="formatText('italic', 'true')">{{ 'resources.italic' | translate }}</ng-template>
+  <ng-template contextMenuItem (execute)="formatText('strike', 'true')">{{ 'resources.strike' | translate }}</ng-template>
+  <ng-template contextMenuItem (execute)="formatText('underline', 'true')">{{ 'resources.underline' | translate }}</ng-template>
+  <ng-template contextMenuItem (execute)="formatLine('list', 'bullet')">{{ 'resources.bulletList' | translate }}</ng-template>
+  <ng-template contextMenuItem (execute)="formatLine('list', 'ordered')">{{ 'resources.orderedList' | translate }}</ng-template>
+</context-menu>

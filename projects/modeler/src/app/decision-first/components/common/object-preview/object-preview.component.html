@@ -1,0 +1,8 @@
+<div *ngIf="doDisplayDescription()">
+  <div class="preview-description" [innerHTML]="object.description"></div>
+</div>
+
+<div *ngIf="!doDisplayDescription()">
+  <p>{{ object.question }}</p>
+  <dfm-decision-answer [decision]="object" [isReadOnly]="true"></dfm-decision-answer>
+</div>

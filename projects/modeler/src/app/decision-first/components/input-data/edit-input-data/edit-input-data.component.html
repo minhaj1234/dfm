@@ -1,0 +1,32 @@
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label for="inputDataName">{{ 'resources.name' | translate }}</label>
+    <core-edit-multiple-lines-control id="inputDataName" formControlName="name" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+  </div>
+  <div class="form-group">
+    <label for="inputDataDescription">{{ 'resources.description' | translate }}</label>
+    <core-edit-multiple-lines-control id="inputDataDescription" formControlName="description" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+  </div>
+
+  <core-object-tags
+    [addTabAction]="fromModelerStore.AddTab"
+    [tags]="editObject.tags"
+    *ngIf="editObject">
+  </core-object-tags>
+
+  <div class="form-group">
+    <label for="type">{{ 'resources.type' | translate }}</label>
+    <select id="type" class="form-control" formControlName="type">
+      <option value="{{ inputDataType }}" *ngFor="let inputDataType of getInputDataTypeValues">
+        {{ getI18nNameInputDataType(inputDataType.toLowerCase()) | translate }}
+      </option>
+    </select>
+  </div>
+
+  <core-input-url formControlName="url"></core-input-url>
+
+  <div class="form-group">
+    <label for="complexity">{{ 'resources.complexity' | translate }}</label>
+    <input type="text" id="complexity" class="form-control" formControlName="complexity" />
+  </div>
+</form>

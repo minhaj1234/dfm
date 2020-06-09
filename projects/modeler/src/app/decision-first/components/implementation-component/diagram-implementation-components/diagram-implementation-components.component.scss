@@ -1,0 +1,17 @@
+
+@import '../../../../../assets/css/themes.scss';
+
+.panel {
+  cursor: pointer;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.name {
+  font-size: 0.9rem;
+  color: nb-theme(darken-primary-color);
+  font-weight: 500;
+}

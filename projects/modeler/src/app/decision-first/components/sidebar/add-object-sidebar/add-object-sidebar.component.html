@@ -1,0 +1,58 @@
+<div class="container pt-2">
+  <div class="header">
+    <span class="header-text">{{ 'resources.create' | translate }}</span>
+    <i class="eva eva-close-outline header-icon" (click)="openNavigationSidebarPanel()" id="openNavigationSidebarPanel"></i>
+  </div>
+  <nb-list>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addDiagram" (click)="showDialogCreateDiagram()">
+        {{ 'resources.diagram' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addDecision" (click)="showDialogCreateDecision()">
+        {{ 'resources.decision' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addInputData" (click)="showDialogCreateInputData()">
+        {{ 'resources.inputData' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addKnowledgeSource" (click)="showDialogCreateKnowledgeSource()">
+        {{ 'resources.knowledgeSource' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addOrganization" (click)="showDialogCreateOrganization()">
+        {{ 'resources.organization' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addBusinessObjective" (click)="showDialogCreateBusinessObjective()">
+        {{ 'resources.businessObjective' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addProcess" (click)="showDialogCreateProcess()">
+        {{ 'resources.process' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addEvent" (click)="showDialogCreateEvent()">
+        {{ 'resources.event' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addSystem" (click)="showDialogCreateSystem()">
+        {{ 'resources.system' | translate }}
+      </div>
+    </nb-list-item>
+    <nb-list-item>
+      <div class="nb-list-item-text" id="addImplementationComponent" (click)="showDialogCreateImplementationComponent()">
+        {{ 'resources.implementationComponent' | translate }}
+      </div>
+    </nb-list-item>
+  </nb-list>
+</div>

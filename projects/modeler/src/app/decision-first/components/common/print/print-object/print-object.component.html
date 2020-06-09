@@ -1,0 +1,365 @@
+<div class="print-object-container">
+  <ng-template [ngTemplateOutlet]="printCommon"></ng-template>
+
+  <ng-template *ngIf="isDecision()" [ngTemplateOutlet]="printDecision"></ng-template>
+
+  <ng-template *ngIf="isInputData()" [ngTemplateOutlet]="printInputData"></ng-template>
+
+  <ng-template *ngIf="isKnowledgeSource()" [ngTemplateOutlet]="printKnowledgeSource"></ng-template>
+
+  <ng-template *ngIf="isBusinessObjective()" [ngTemplateOutlet]="printBusinessObjective"></ng-template>
+
+  <ng-template *ngIf="isOrganization()" [ngTemplateOutlet]="printOrganization"></ng-template>
+
+  <ng-template *ngIf="isImplementationComponent()" [ngTemplateOutlet]="printImpelmentationComponent"></ng-template>
+
+  <ng-template *ngIf="isProcess()" [ngTemplateOutlet]="printProcess"></ng-template>
+
+  <ng-template *ngIf="isEvent()" [ngTemplateOutlet]="printEvent"></ng-template>
+
+  <ng-template *ngIf="isSystem()" [ngTemplateOutlet]="printSystem"></ng-template>
+
+  <ng-template [ngTemplateOutlet]="printComments"></ng-template>
+</div>
+
+<ng-template #printCommon>
+  <h2 *ngIf="topLevelHeading">{{ object.name }}</h2>
+  <h4 *ngIf="!topLevelHeading">{{ object.name }}</h4>
+
+  <div *ngIf="object.description">
+    <p [innerHTML]="object.description"></p>
+  </div>
+
+  <dfm-print-property [text]="convertObjectValue(object.type)" title="{{ 'resources.type' | translate }}"></dfm-print-property>
+</ng-template>
+
+<ng-template #printComments>
+  <div *ngIf="doDisplayRelatedObjects(object.comments) && includeComments">
+    <h4>{{ 'resources.comments' | translate}}</h4>
+    <div class="comments-list-container" *ngFor="let item of object.comments">
+      <dfm-comment-item-display 
+        [comment]="item" 
+        [displayForPrinting]="true">
+      </dfm-comment-item-display>
+    </div>
+  </div> 
+  
+</ng-template>
+
+<ng-template #printDecision>
+  <dfm-print-property [text]="convertObjectValue(object.statusLevel)" title="{{ 'resources.statusLevel' | translate }}"></dfm-print-property>
+
+  <dfm-print-property [text]="object.url" title="{{ 'resources.url' | translate }}"></dfm-print-property>
+
+  <dfm-print-property [text]="object.question" title="{{ 'resources.question' | translate }}"></dfm-print-property>
+  <dfm-decision-answer [decision]="object" [isReadOnly]="true"></dfm-decision-answer>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.diagrams)" 
+    [objects]="object.diagrams" 
+    title="{{ 'resources.diagrams' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="getPrimaryDiagram(object)" 
+    [text]="getPrimaryDiagram(object).name" 
+    title="{{ 'resources.primaryDiagram' | translate }}">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiredByDecisions)" 
+    [objects]="object.requiredByDecisions" 
+    title="{{ 'resources.requiredBy' | translate }} {{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiredByKnowledgeSources)" 
+    [objects]="object.requiredByKnowledgeSources" 
+    title="{{ 'resources.requiredBy' | translate }} {{ 'resources.knowledgeSources' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiresDecisions)" 
+    [objects]="object.requiresDecisions" 
+    title="{{ 'resources.requires' | translate }} {{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiresInputData)" 
+    [objects]="object.requiresInputData" 
+    title="{{ 'resources.requires' | translate }} {{ 'resources.inputDatas' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiresKnowledgeSources)" 
+    [objects]="object.requiresKnowledgeSources" 
+    title="{{ 'resources.requires' | translate }} {{ 'resources.knowledgeSources' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+    
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiredByKnowledgeSources)" 
+    [objects]="object.requiredByKnowledgeSources" 
+    title="{{ 'resources.requiredBy' | translate }} {{ 'resources.knowledgeSources' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.implementationComponents)" 
+    [objects]="object.implementationComponents"
+    title="{{ 'resources.implementationComponents' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <div *ngIf="doDisplayOrganizationContext(object)">
+    <h4>{{ 'resources.organizationContext' | translate}}</h4>
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.organizationsOwnsDecisions)" 
+      [objects]="object.organizationsOwnsDecisions" 
+      title="{{ 'resources.organizationsOwnedBy' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.organizationsMakesDecisions)" 
+      [objects]="object.organizationsMakesDecisions" 
+      title="{{ 'resources.organizationsMadeBy' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.organizationsImpactedByDecisions)" 
+      [objects]="object.organizationsImpactedByDecisions" 
+      title="{{ 'resources.organizationsImpacts' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  </div>
+
+  <div *ngIf="doDisplayApplicationContext(object)">
+    <h4>{{ 'resources.applicationContext' | translate}}</h4>
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.businessObjectives)" 
+      [objects]="object.businessObjectives" 
+      title="{{ 'resources.businessObjectives' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.processes)" 
+      [objects]="object.processes" 
+      title="{{ 'resources.processes' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.events)" 
+      [objects]="object.events" 
+      title="{{ 'resources.events' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.systems)" 
+      [objects]="object.systems" 
+      title="{{ 'resources.systems' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  </div>
+</ng-template>
+
+<ng-template #printInputData>
+  <dfm-print-property [text]="object.url" title="Url"></dfm-print-property>
+
+  <dfm-print-property *ngIf="object.complexity" [text]="object.complexity" title="{{ 'resources.complexity' | translate }}"></dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.organizations)" 
+    [objects]="object.organizations" 
+    title="{{ 'resources.organizations' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.diagrams)" 
+    [objects]="object.diagrams" 
+    title="{{ 'resources.diagrams' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="getPrimaryDiagram(object)" 
+    [text]="getPrimaryDiagram(object).name" 
+    title="{{ 'resources.primaryDiagram' | translate }}">
+  </dfm-print-property>
+
+  <dfm-print-property  *ngIf="doDisplayRelatedObjects(object.requiredByDecisions)" 
+    [objects]="object.requiredByDecisions" 
+    title="{{ 'resources.requiredBy' | translate }} {{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiredByKnowledgeSources)" 
+    [objects]="object.requiredByKnowledgeSources" 
+    title="{{ 'resources.requiredBy' | translate }} {{ 'resources.knowledgeSources' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+</ng-template>
+
+<ng-template #printKnowledgeSource>
+  <dfm-print-property [text]="object.url" title="{{ 'resources.url' | translate }}"></dfm-print-property>
+
+  <dfm-print-property *ngIf="object.complexity" [text]="object.complexity" title="{{ 'resources.complexity' | translate }}"></dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.organizations)" 
+    [objects]="object.organizations" 
+    title="{{ 'resources.Organizations' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.diagrams)" 
+    [objects]="object.diagrams" 
+    title="{{ 'resources.diagrams' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="getPrimaryDiagram(object)" 
+    [text]="getPrimaryDiagram(object).name" 
+    title="{{ 'resources.primaryDiagram' | translate }}">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiresDecisions)" 
+    [objects]="object.requiresDecisions" 
+    title="{{ 'resources.requires' | translate }} {{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiredByDecisions)" 
+    [objects]="object.requiredByDecisions" 
+    title="{{ 'resources.requiredBy' | translate }} {{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiresKnowledgeSources)" 
+    [objects]="object.requiresKnowledgeSources" 
+    title="{{ 'resources.requires' | translate }} {{ 'resources.knowledgeSources' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+  
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.requiredByKnowledgeSources)" 
+    [objects]="object.requiredByKnowledgeSources" 
+    title="{{ 'resources.requiredBy' | translate }} {{ 'resources.knowledgeSources' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+</ng-template>
+
+<ng-template #printBusinessObjective>
+  <dfm-print-property [text]="object.url" title="Url"></dfm-print-property>
+
+  <div *ngIf="doDisplayBusinessImpact(object)">
+    <h4>{{ 'resources.businessImpact' | translate}}</h4>
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.decisions)" 
+      [objects]="object.decisions" 
+      title="{{ 'resources.decisions' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.organizations)"
+      [objects]="object.organizations" 
+      title="{{ 'resources.organizations' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  </div>
+
+  <div *ngIf="doDisplayRelatedObjects(object.decisions)">
+    <dfm-print-property [objects]="object.decisions" title="{{ 'resources.decisions' | translate }}" [includeDescription]="includeRelatedObjects"></dfm-print-property>
+  </div>
+</ng-template>
+
+<ng-template #printOrganization>
+  <dfm-print-property [text]="object.url" title="{{ 'resources.url' | translate }}"></dfm-print-property>
+
+  <div *ngIf="doDisplayDecisionsInvolved(object)">
+    <h4>{{ 'resources.decisionsInvolved' | translate}}</h4>
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.ownsDecisions)"
+      [objects]="object.ownsDecisions" 
+      title="{{ 'resources.ownsDecisions' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.makesDecisions)"
+      [objects]="object.makesDecisions" 
+      title="{{ 'resources.makesDecisions' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.impactedByDecisions)"
+      [objects]="object.impactedByDecisions" 
+      title="{{ 'resources.impactedByDecisions' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  </div>
+
+  <div *ngIf="doDisplayOrganizationStructure(object)">
+    <h4>{{ 'resources.organizationStructure' | translate}}</h4>
+    <div>
+      <h4>{{ 'resources.parent' | translate}}</h4>
+      <p>{{ object.parentOrganization.name }}</p>
+
+      <dfm-print-property *ngIf="doDisplayRelatedObjects(object.childOrganizations)"
+        [objects]="object.childOrganizations" 
+        title="{{ 'resources.childrens' | translate }}" 
+        [includeDescription]="includeRelatedObjects">
+      </dfm-print-property>
+    </div>
+  </div>
+
+  <div *ngIf="doDisplayOwnsOrganization(object)">
+    <h4>{{ 'resources.owns' | translate}}</h4>
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.knowledgeSources)"
+      [objects]="object.knowledgeSources" 
+      title="{{ 'resources.knowledgeSources' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.inputDatas)"
+      [objects]="object.inputDatas" 
+      title="{{ 'resources.inputDatas' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  </div>
+
+  <div *ngIf="doDisplayObjectivesInvolved(object)">
+    <h4>{{ 'resources.objectivesInvolved' | translate}}</h4>
+    <dfm-print-property *ngIf="doDisplayRelatedObjects(object.businessObjectives)"
+      [objects]="object.businessObjectives" 
+      title="{{ 'resources.businessObjectives' | translate }}" 
+      [includeDescription]="includeRelatedObjects">
+    </dfm-print-property>
+  </div>
+</ng-template>
+
+<ng-template #printImpelmentationComponent>
+  <dfm-print-property [text]="object.url" title="{{ 'resources.url' | translate }}"></dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.decisions)" 
+    [objects]="object.decisions" 
+    title="{{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+</ng-template>
+
+<ng-template #printProcess>
+  <dfm-print-property [text]="object.url" title="{{ 'resources.url' | translate }}"></dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.decisions)" 
+    [objects]="object.decisions" 
+    title="{{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+</ng-template>
+
+<ng-template #printEvent>
+  <dfm-print-property [text]="object.url" title="{{ 'resources.url' | translate }}"></dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.decisions)" 
+    [objects]="object.decisions" 
+    title="{{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+</ng-template>
+
+<ng-template #printSystem>
+  <dfm-print-property [text]="object.url" title="{{ 'resources.url' | translate }}"></dfm-print-property>
+
+  <dfm-print-property *ngIf="doDisplayRelatedObjects(object.decisions)" 
+    [objects]="object.decisions" 
+    title="{{ 'resources.decisions' | translate }}" 
+    [includeDescription]="includeRelatedObjects">
+  </dfm-print-property>
+</ng-template>

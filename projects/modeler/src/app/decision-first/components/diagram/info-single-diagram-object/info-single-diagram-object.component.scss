@@ -1,0 +1,36 @@
+.info-single-diagram-object-container {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  background-color: #f8f9fb;
+  height: 5rem;
+  font-size: 0.9rem;
+}
+
+.row {
+  margin: 0;
+  width: 100%;
+}
+
+.row > div {
+  padding: 0;
+}
+
+.arrow-icon-container {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+i {
+  margin-left: auto;
+}
+
+.truncated-name {
+  font-weight: 500;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

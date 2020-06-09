@@ -1,0 +1,40 @@
+<div *ngIf="state$ | async as state">
+  <div class="print-container-toolbar">
+    <nb-checkbox (checkedChange)="onIncludeRelatedObjectsClick($event)">{{ 'resources.includeRelatedObjects' | translate }}</nb-checkbox>
+    <nb-checkbox *ngIf="!isDiagram()" (checkedChange)="onIncludeCommentsClick($event)">{{ 'resources.includeComments' | translate }}</nb-checkbox>
+    <button [useExistingCss]="true" class="btn btn-info btn-block get-more-results mt-1" [printSectionId]="getPrintSectionId()" ngxPrint>{{ 'resources.print' | translate }}</button> 
+  </div>
+
+  <div [id]="getPrintSectionId()">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <dfm-print-object 
+              *ngIf="!isDiagram()"
+              [object]="state.object" 
+              [includeRelatedObjects]="includeRelatedObjects" 
+              [includeComments]="includeComments">
+            </dfm-print-object>
+
+            <dfm-print-diagram 
+              *ngIf="isDiagram()"
+              [diagram]="state.object"
+              [includeRelatedObjects]="includeRelatedObjects" 
+              [image]="state.diagramImage">
+            </dfm-print-diagram>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>
+            <div class="footer-space">&nbsp;</div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <footer id="pageFooter" class='footer' [innerHTML]="customerFooter"></footer>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<nb-card>
+  <div class="warning-container">
+    <div class="warning-header">
+      <h5>{{'resources.headsUp' | translate}}</h5>
+    </div>
+    <div class="warning-content">
+      <span>{{'resources.removeObjectWarning' | translate}}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 pr-1">
+      <button type="button" class="btn btn-info btn-block" (click)="deleteObjectFromDrd()">
+        <i class="eva eva-close-circle-outline search-icon"></i>
+        {{ 'resources.fromDrd' | translate }}
+      </button>
+    </div>
+    <div class="col-6 pr-1">
+      <button type="button" class="btn btn-info btn-block" (click)="deleteObjectPermanently()">
+        <i class="eva eva-trash-2-outline search-icon"></i>
+        {{ 'resources.permanently' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="warning-hint">
+    <span>
+      Connection Exist:View Requirements Network
+    </span>
+  </div>
+
+</nb-card>

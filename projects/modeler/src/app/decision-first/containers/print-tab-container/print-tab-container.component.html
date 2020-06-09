@@ -1,0 +1,5 @@
+<nb-card class="h-100 mb-0">
+  <div class="tab-item" *ngIf="state$ | async as state">
+    <dfm-print-container [objectId]="objectId" [objectType]="objectType" [customerFooter]="state.footerHtml"></dfm-print-container>
+  </div>
+</nb-card>

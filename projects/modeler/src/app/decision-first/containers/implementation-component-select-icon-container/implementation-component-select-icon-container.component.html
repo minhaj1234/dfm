@@ -1,0 +1,6 @@
+<div *ngIf="state$ | async as state">
+  <form [formGroup]="selectIconForm">
+    <dfm-implementation-component-select-icon id="iconId" (selectIconClick)="onSelectIconClick()" formControlName="iconId" [icons]="state.icons">
+    </dfm-implementation-component-select-icon>
+  </form>
+</div>

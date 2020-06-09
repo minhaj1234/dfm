@@ -1,0 +1,13 @@
+<div *ngIf="selectedObject" class="info-single-diagram-object-container">
+  <div class="row">
+    <div [ngClass]="[isGraphable(selectedObject) ? 'col-11' : 'col-12']">
+      <div class="truncated-name mb-1">
+        {{ name }}
+      </div>
+      <core-view-multiple-lines-control [text]="description"></core-view-multiple-lines-control>
+    </div>
+    <div *ngIf="isGraphable(selectedObject)" class="col-1 arrow-icon-container">
+      <i class="eva eva-chevron-right" (click)="openTab()"></i>
+    </div>
+  </div>
+</div>

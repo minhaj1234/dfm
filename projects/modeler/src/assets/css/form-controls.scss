@@ -1,0 +1,22 @@
+select[disabled] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: "";
+}
+
+select[disabled]::-ms-expand {
+  display: none;
+}
+
+.btn-info {
+  background-color: nb-theme(primary-color);
+}
+
+textarea.ng-touched.ng-invalid, textarea.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
+
+input.ng-touched.ng-invalid, textarea.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}

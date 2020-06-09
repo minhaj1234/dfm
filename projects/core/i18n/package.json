@@ -1,0 +1,10 @@
+{
+	"ngPackage": {
+		"lib": {
+			"umdModuleIds": {
+				"@ngx-translate/core": "ngxTranslateCore",
+				"@ngx-translate/http-loader": "httpLoader"
+			}
+		}
+	}
+}

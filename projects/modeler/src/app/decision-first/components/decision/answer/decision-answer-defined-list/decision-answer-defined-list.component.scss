@@ -1,0 +1,13 @@
+@import '../../../../../../assets/css/themes.scss';
+
+.list-answer-items {
+  overflow: auto;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+}
+
+.remove-answer-item {
+  font-size: 1.2rem;
+  cursor: pointer;
+  float: right;
+}

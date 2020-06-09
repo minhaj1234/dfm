@@ -1,0 +1,15 @@
+<nb-card>
+  <form [formGroup]="formGroup">
+    <div class="form-group">
+      <label for="diagramName">{{ 'resources.name' | translate }}</label>
+      <core-edit-multiple-lines-control id="diagramName" formControlName="name" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+    <div class="form-group">
+      <label for="diagramDescription">{{ 'resources.description' | translate }}</label>
+      <core-edit-multiple-lines-control id="diagramDescription" formControlName="description" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+    </div>
+    <button type="button" class="btn btn-info btn-block" (click)="addObject()" [disabled]="formGroup.invalid">
+      {{ 'resources.addDiagram' | translate }}
+    </button>
+  </form>
+</nb-card>

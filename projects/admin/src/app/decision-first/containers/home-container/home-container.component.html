@@ -1,0 +1,16 @@
+<nb-card class="h-100">
+  <div class="container container-custom mt-3 ml-30 mr-30">
+    <div class="mb-4">
+      <admin-search-control [searchAction]="fromModelerStore.UpdateSearchForCustomersList"></admin-search-control>
+    </div>
+    <div class="pb-2">
+      <admin-search-list class="mb-2" [searchList]="searchList$ | async" [searchTerm]="searchTerm$ | async"
+        [isReadOnly]="isReadOnlySession$ | async">
+      </admin-search-list>
+    </div>
+    <div>
+      <core-pagination-load-more [pagination]="pagination$ | async" [store]="modelerStore"
+        [getMoreAction]="fromModelerStore.LoadSpecificPageForCustomersList"></core-pagination-load-more>
+    </div>
+  </div>
+</nb-card>

@@ -1,0 +1,47 @@
+<div class="text-center mb-1">
+  <h5>Users</h5>
+  <div class="user-table-toolbar mb-2" *ngIf="!isReadOnly">
+      <div class="add-user-toolbar">
+        <button *ngIf="addUserAction" class="form-control add-user-button btn-info" (click)="onAddUserClick()">
+          Add User
+        </button>
+      </div>
+      <div class="add-users-to-group-toolbar" *ngIf="addUsersToGroupAction">
+        <button class="form-control btn-info mr-2" (click)="onAddUsersToGroupClick()" [disabled]="!canAddUserToGroup()">
+          Add User To Group
+        </button>
+        <core-autocomplete-list 
+          (updateSearchList)="onSearchListUpdate($event)" 
+          (selectListItem)="onUserSelected($event)"
+          (resetSearchList)="onResetSearchList()"
+          [autocompleteSearchList]="(autocompleteSearchList$ | async)"
+          [searchDebounceTime]="searchDebounceTime">
+        </core-autocomplete-list>
+      </div>
+    </div>
+  <table class="table disable-text-selection" *ngIf="users && users.length > 0; else noUsers;">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Type</th>
+        <th *ngIf="canDeleteUser()"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="user-row" *ngFor="let user of users" (dblclick)="openUserTab(user.id)">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ UserType[user.type] | titlecase }}</td>
+        <td *ngIf="canDeleteUser()">
+          <i class="nb-close icon" (click)="onDeleteClick(user.id)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noUsers>
+    No users.
+  </ng-template>
+</div>

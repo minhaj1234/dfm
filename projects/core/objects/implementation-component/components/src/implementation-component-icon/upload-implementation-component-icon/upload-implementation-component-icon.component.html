@@ -1,0 +1,20 @@
+<div class="upload-icon-container mb-3">
+  <button class="form-control open-upload-icon-form-button btn-info mb-2" *ngIf="!displayForm"
+    (click)="openUploadIconForm()">    
+    {{ 'resources.uploadIcon' | translate }}
+  </button>
+
+  <div *ngIf="displayForm">
+    <form [formGroup]="uploadIconForm">
+      <div class="form-container col-6 mb-2">
+        <input type="text" formControlName="name" name="iconName" class="form-control icon-name mr-1 mt-1" 
+          placeholder="{{ 'resources.name' | translate }}" autocomplete="off">
+        <input type="text" formControlName="tooltip" name="tooltip" class="form-control icon-tooltip mr-1 mt-1" 
+          placeholder="{{ 'resources.tooltip' | translate }}" autocomplete="off">
+        <core-upload-file formControlName="icon" [accept]="accept" class="mt-1"></core-upload-file>
+      </div>
+    </form>
+    <button class="btn btn-info upload-icon mr-2" [disabled]="!isFormValid()" (click)="onUploadIconClick()">{{ 'resources.upload' | translate }}</button>
+    <button class="btn btn-info close-upload-icon-form-button" (click)="closeUploadIconForm()">{{ 'resources.cancel' | translate }}</button>
+  </div>
+</div>

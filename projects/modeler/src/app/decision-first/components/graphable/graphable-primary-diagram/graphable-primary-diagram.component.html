@@ -1,0 +1,12 @@
+{{ 'resources.primaryDiagram' | translate }}
+<div class="input-group mt-3 mb-3">
+  <select class="form-control select-primary-diagram-id" [ngModel]="primaryDiagramId" (ngModelChange)="onPrimaryDiagramSelected($event)" [disabled]="isReadOnly">
+    <option [ngValue]=""></option>
+    <option [ngValue]="diagram.id" *ngFor="let diagram of diagrams">{{ diagram.name }}</option>
+  </select>
+  <div class="input-group-append">
+    <button [disabled]="!isCanOpenPrimaryDiagram()" class="btn btn-outline-secondary" (click)="openSelectedDiagram()">
+      {{ 'resources.open' | translate }}
+    </button>
+  </div>
+</div>

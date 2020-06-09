@@ -1,0 +1,9 @@
+{
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "angular4-hal": "angular4Hal"
+      }
+    }
+  }
+}

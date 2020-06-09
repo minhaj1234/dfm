@@ -1,0 +1,21 @@
+<div class="diagram-tabs-container"
+  [ngClass]="{'navbar-active': selectedTab}">
+  <div class="diagram-nav-tabs-title-container">
+    <div
+      class="diagram-nav-tab-title"
+      *ngFor="let tab of tabs"
+      [ngClass]="{'tab-active': doTabDisplay(tab)}"
+      (click)="onTabClicked(tab)">
+      <div class="title-icon-container">
+        <i class="{{ tab.titleIcon }}"></i>
+      </div>
+      <div class="disable-text-selection">{{ tab.title | uppercase }}</div>
+    </div>
+  </div>
+
+  <ng-container  *ngIf="selectedTab">
+    <div class="diagram-tab-content-container pl-2 pr-2">
+      <ng-template [ngTemplateOutlet]="selectedTab.contentTemplateRef"></ng-template>
+    </div>
+  </ng-container>
+</div>

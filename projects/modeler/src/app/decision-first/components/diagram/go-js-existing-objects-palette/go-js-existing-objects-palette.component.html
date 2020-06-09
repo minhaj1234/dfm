@@ -1,0 +1,14 @@
+<div class="palette-container pb-3">
+  <dfm-search-control [searchAction]="fromModelerStore.UpdateSearchForDiagrammingElements"></dfm-search-control>
+  <div #paletteDiv class="paletteDiv mb-2"></div>
+
+  <core-pagination-load-more
+    [store]="modelerStore"
+    [pagination]="pagination$ | async"
+    [getMoreAction]="fromModelerStore.LoadSpecificPageForDiagrammingElementsList">
+  </core-pagination-load-more>
+
+  <button class="btn btn-info btn-block close-button" *ngIf="isClosable" (click)="onClose()">
+    {{ 'resources.cancel' | translate | uppercase }}
+  </button>
+</div>

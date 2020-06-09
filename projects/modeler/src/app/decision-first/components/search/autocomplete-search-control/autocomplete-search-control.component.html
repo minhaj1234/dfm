@@ -1,0 +1,7 @@
+<div #autocompleteSearchControl *ngIf="state$ | async as state">
+  <dfm-search-control [searchAction]="fromModelerStore.UpdateSearchForAutocompleteSearchList" 
+    (clickSearch)="clickSearch()" (inputSearch)="inputSearch()" (clickButtonSearch)="clickButtonSearchSearchControl()"></dfm-search-control>
+  <dfm-search-list *ngIf="state.autocompleteSearchList.length > 0 && isShowAutocompleteList" class="position-absolute" 
+    [searchList]="state.autocompleteSearchList" [isShowDelimiter]="false" [isReadOnly]="state.isReadOnlySession"
+    (clickOpenTab)="clickOpenTabAutocompleteSearchList()" (clickDeleteObject)="clickDeleteObjectAutocompleteSearchList()"></dfm-search-list>
+</div>

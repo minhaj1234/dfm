@@ -1,0 +1,15 @@
+<h5 class="mb-3" *ngIf="searchTerm !== undefined">Results For "{{ searchTerm }}":</h5>
+
+<nb-list class="search-list pt-3 pb-2 pl-2 pr-2">
+  <nb-list-item *ngFor="let searchItem of searchList; trackBy: trackByFn">
+    <div class="search-item-list pt-1">
+      <div class="item-name">
+        <span attr.data-action="open-tab-{{ searchItem.id }}" (click)="openTab(searchItem)">
+          <span class="item-name">{{ searchItem.name }}</span>
+        </span>
+        <i *ngIf="!isReadOnly" attr.data-action="delete-{{ searchItem.id }}" class="eva eva-trash-2-outline remove-item icon-gray-color" (click)="delete(searchItem)"></i>
+      </div>
+      <hr *ngIf="isShowDelimiter" />
+    </div>
+  </nb-list-item>
+</nb-list>

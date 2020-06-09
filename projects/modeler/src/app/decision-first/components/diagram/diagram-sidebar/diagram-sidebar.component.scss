@@ -1,0 +1,56 @@
+@import '../../../../../assets/css/themes.scss';
+
+:host ::ng-deep .nav-tabs {
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  padding-left: 0 !important;
+}
+
+.diagram-sidebar-container {
+  height: 100%;
+  position: absolute;
+}
+
+.diagram-sidebar-mobile-layout {
+  display: none;
+  height: 100%;
+}
+
+.diagram-sidebar-desktop-layout {
+  height: 100%;
+}
+
+.existing-object-palette-mobile {
+  height: calc(100vh - #{nb-theme(existing-object-palette-mobile-indent-top)});
+}
+
+@media only screen and (max-width: 900px) {
+  :host {
+    max-width: 100%;
+    flex: 0 0 5rem;
+  }
+
+  ::ng-deep .diagram-sidebar-container .diagram-tab-content-container {
+    box-shadow:  0 4px 2px -2px #797979;
+  }
+
+  .diagram-sidebar-container {
+    position: absolute !important;
+    height: inherit;
+    width: 100%;
+    z-index: 3;
+  }
+
+  .diagram-sidebar-mobile-layout {
+    display: block;
+  }
+
+  .diagram-sidebar-desktop-layout {
+    display: none;
+  }
+
+  .diagram-sidebar-container {
+    max-width: 100%;
+  }
+}

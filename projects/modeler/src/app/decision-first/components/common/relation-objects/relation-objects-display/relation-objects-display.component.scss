@@ -1,0 +1,19 @@
+.dfm-objects-container {
+  padding: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.draggable-to {
+  background-color: #75d6d4;
+}
+
+.draggable-over {
+  background-color: #62aafc;
+}
+
+.chips-list {
+  display: flex;
+  flex-wrap: wrap;
+}

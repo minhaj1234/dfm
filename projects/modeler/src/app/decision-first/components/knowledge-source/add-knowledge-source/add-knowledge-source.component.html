@@ -1,0 +1,31 @@
+<nb-card>
+  <form [formGroup]="formGroup">
+    <div class="form-group">
+      <label for="knowledgeSourceName">{{ 'resources.name' | translate }}</label>
+      <core-edit-multiple-lines-control id="knowledgeSourceName" formControlName="name" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-group">
+      <label for="knowledgeSourceDescription">{{ 'resources.description' | translate }}</label>
+      <core-edit-multiple-lines-control id="knowledgeSourceDescription" formControlName="description" [maxTextLength]="maxTextLengthCategory.LongText"></core-edit-multiple-lines-control>
+    </div>
+
+    <div class="form-group">
+      <label for="knowledgeSourceUrl">{{ 'resources.url' | translate }}</label>
+      <input type="text" id="knowledgeSourceUrl" class="form-control" formControlName="url" />
+    </div>
+
+    <div class="form-group">
+      <label for="knowledgeSourceType">{{ 'resources.type' | translate }}</label>
+      <select id="knowledgeSourceType" class="form-control" formControlName="type">
+        <option value="{{ knowledgeSourceType }}" *ngFor="let knowledgeSourceType of getKnowledgeSourceTypeValues">
+          {{ getI18nNameKnowledgeSourceType(knowledgeSourceType.toLowerCase()) | translate }}
+        </option>
+      </select>
+    </div>
+
+    <button type="button" class="btn btn-info btn-block" (click)="addObject()" [disabled]="formGroup.invalid">
+      {{ 'resources.addKnowledgeSource' | translate }}
+    </button>
+  </form>
+</nb-card>

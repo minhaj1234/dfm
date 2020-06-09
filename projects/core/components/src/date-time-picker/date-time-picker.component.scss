@@ -1,0 +1,35 @@
+input[readonly] {
+  cursor: pointer;
+}
+
+.button-icon {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.datepicker-container {
+  width: 11rem;
+  padding-left: 12px;
+  padding-bottom: 4px;
+}
+
+.timepicker-container {
+  width: 11.7rem;
+}
+
+:host ::ng-deep .btn-outline-primary {
+  color: #16a2b8;
+  background-color: transparent;
+  border-color: #16a2b8;
+}
+
+:host ::ng-deep .btn-outline-primary:hover {
+  color: #ffffff;
+  background-color: #16a2b8;
+  border-color: #16a2b8;
+}
+
+:host ::ng-deep .btn-outline-primary:active {
+  background-color: #16a2b8 !important;
+  border-color: #16a2b8 !important;
+}

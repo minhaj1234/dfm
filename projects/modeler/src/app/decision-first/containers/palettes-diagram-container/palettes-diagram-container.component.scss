@@ -1,0 +1,15 @@
+.palettes-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.existing-object-palette {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.palettes-container > div {
+  margin-top: 1rem;
+}

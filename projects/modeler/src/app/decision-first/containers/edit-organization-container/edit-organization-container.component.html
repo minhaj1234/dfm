@@ -1,0 +1,111 @@
+<nb-card>
+  <div class="row edit-graphable-container no-margin" *ngIf="state$ | async as state">
+    <div class="jump-menu col-md-3">
+      <dfm-jump-menu [object]="state.organization" [anchors]="anchors"></dfm-jump-menu>
+    </div>
+    <div class="col-md-6 center-block tab-item">
+      <div class="mb-1" #basicDetailsAnchor>
+        <h5>{{ 'resources.basicDetails' | translate }}</h5>
+        <dfm-edit-organization [editObject]="state.organization" [isReadOnly]="state.isReadOnlySession">
+        </dfm-edit-organization>
+      </div>
+
+      <div class="mb-1" #decisionsInvolvedAnchor>
+        <h5>{{ 'resources.decisionsInvolved' | translate }}</h5>
+        <dfm-relation-objects-display
+          caption="{{ 'resources.ownsDecisions' | translate }}"
+          [addAction]="fromModelerStore.AddRelatedObjectToOrganization"
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromOrganization"
+          [to]="state.organization"
+          acceptsType="Decision"
+          relationObjectsKey="ownsDecisions"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-relation-objects-display>
+        <dfm-relation-objects-display
+          caption="{{ 'resources.makesDecisions' | translate }}"
+          [addAction]="fromModelerStore.AddRelatedObjectToOrganization"
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromOrganization"
+          [to]="state.organization"
+          acceptsType="Decision"
+          relationObjectsKey="makesDecisions"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-relation-objects-display>
+        <dfm-relation-objects-display
+          caption="{{ 'resources.impactedByDecisions' | translate }}"
+          [addAction]="fromModelerStore.AddRelatedObjectToOrganization"
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromOrganization"
+          [to]="state.organization"
+          acceptsType="Decision"
+          relationObjectsKey="impactedByDecisions"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-relation-objects-display>
+      </div>
+
+      <div class="mb-1" #organizationStructureAnchor>
+        <h5>{{ 'resources.organizationStructure' | translate }}</h5>
+        <dfm-relation-objects-display
+          caption="{{ 'resources.parent' | translate }}"
+          [to]="state.organization"
+          [addAction]="fromModelerStore.AddRelatedObjectToOrganization"
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromOrganization"
+          acceptsType="Organization"
+          relationObjectsKey="parentOrganization"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-relation-objects-display>
+        <dfm-relation-objects-display
+          caption="{{ 'resources.childrens' | translate }}"
+          [to]="state.organization"
+          acceptsType="Organization"
+          relationObjectsKey="childrens">
+        </dfm-relation-objects-display>
+      </div>
+
+      <div class="mb-1" #ownsAnchor>
+        <h5>{{ 'resources.owns' | translate }}</h5>
+        <dfm-relation-objects-display
+          caption="{{ 'resources.knowledgeSources' | translate }}"
+          [addAction]="fromModelerStore.AddRelatedObjectToOrganization"
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromOrganization"
+          [to]="state.organization"
+          acceptsType="KnowledgeSource"
+          relationObjectsKey="knowledgeSources"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-relation-objects-display>
+        <dfm-relation-objects-display
+          caption="{{ 'resources.inputData' | translate }}"
+          [addAction]="fromModelerStore.AddRelatedObjectToOrganization"
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromOrganization"
+          [to]="state.organization"
+          acceptsType="InputData"
+          relationObjectsKey="inputDatas"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-relation-objects-display>
+      </div>
+
+      <div class="mb-1" #objectivesInvolvedAnchor>
+        <h5>{{ 'resources.objectivesInvolved' | translate }}</h5>
+        <dfm-relation-objects-display
+          caption="{{ 'resources.businessObjectives' | translate }}"
+          [addAction]="fromModelerStore.AddRelatedObjectToOrganization"
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromOrganization"
+          [to]="state.organization"
+          acceptsType="BusinessObjective"
+          relationObjectsKey="businessObjectives"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-relation-objects-display>
+      </div>
+
+      <div #commentsAnchor>
+        <dfm-comments-container 
+          *ngIf="state.organization"
+          [addAction]="fromModelerStore.AddRelatedObjectToOrganization" 
+          [removeAction]="fromModelerStore.RemoveRelatedObjectFromOrganization" 
+          [object]="state.organization" 
+          [comments]="state.organization.comments"
+          [authenticatedUser]="state.authenticatedUser"
+          [isReadOnly]="state.isReadOnlySession">
+        </dfm-comments-container>
+      </div>
+    </div>
+  </div>
+</nb-card>

@@ -1,0 +1,13 @@
+{
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "keycode-js": "keycodeJs",
+        "@ngx-translate/core": "ngxTranslateCore",
+        "@nebular/theme": "theme",
+        "@ngrx/store": "store",
+        "angular4-hal": "angular4Hal"
+      }
+    }
+  }
+}

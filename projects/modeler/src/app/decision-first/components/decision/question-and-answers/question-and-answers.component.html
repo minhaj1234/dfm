@@ -1,0 +1,7 @@
+<form [formGroup]="decisionForm">
+  <div class="form-group">
+    <label>{{ 'resources.question' | translate }}</label>
+    <core-edit-multiple-lines-control id="decisionQuestion" formControlName="question" [isRichEditor]="false" [maxTextLength]="maxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+  </div>
+  <dfm-decision-answer [decision]="decision" [isReadOnly]="isReadOnly"></dfm-decision-answer>
+</form>

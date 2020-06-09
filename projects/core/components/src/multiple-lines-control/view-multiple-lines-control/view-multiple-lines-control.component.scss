@@ -1,0 +1,50 @@
+.text-container {
+  width: 100%;
+  max-height: 2.7rem;
+  overflow: hidden;
+  word-wrap: break-word !important;
+  white-space: pre-wrap;
+  padding-bottom: 1px;
+}
+
+:host ::ng-deep {
+  @supports (-ms-ime-align:auto) {
+    .text-container p {
+      display: block !important;
+    }
+  }
+
+  .text-container p {
+    display: block;
+    visibility: visible;
+    /* autoprefixer: ignore next */
+    display: -webkit-box;
+    /* autoprefixer: ignore next */
+    -webkit-line-clamp: 1;
+    /* autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+    margin: 0;
+  }
+
+  .text p,
+  .text ol,
+  .text ul {
+    margin: 0;
+  }
+
+  .text ol:first-child li:nth-child(2) p,
+  .text ul:first-child li:nth-child(2) p,
+  .text p:nth-child(2),
+  .text ul:nth-child(2) p,
+  .text ol:nth-child(2) p {
+    /* autoprefixer: ignore next */
+    -webkit-line-clamp: 1;
+  }
+
+  .text ul:first-child p,
+  .text ol:first-child p,
+  .text p:first-child {
+    /* autoprefixer: ignore next */
+    -webkit-line-clamp: 2;
+  }
+}

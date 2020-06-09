@@ -1,0 +1,27 @@
+<div class="text-center mb-1">
+  <table class="table disable-text-selection" *ngIf="icons && icons.length > 0; else noIcons;">
+    <thead>
+      <tr>
+        <th scope="col">{{ 'resources.name' | translate }}</th>
+        <th scope="col">{{ 'resources.tooltip' | translate }}</th>
+        <th scope="col">{{ 'resources.icon' | translate }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let icon of icons; trackBy: trackByFn" (dblclick)="openIconTab(icon)">
+        <td>{{ icon.name }}</td>
+        <td>{{ icon.tooltip }}</td>
+        <td>
+          <img [src]="transformToSafeSvgResourceUrl(icon.base64)">
+        </td>
+        <td>
+          <i class="nb-close icon" *ngIf="canDeleteIcon(icon)" (click)="deleteIcon(icon.id)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noIcons>
+    {{ 'resources.no' | translate }} {{ 'resources.implementationComponentsIcons' | translate }}
+  </ng-template>
+</div>

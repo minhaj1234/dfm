@@ -1,0 +1,24 @@
+<div *ngIf="state$ | async as state">
+  <user-management-edit-customer
+    [updateAction]="options.updateCustomerAction"
+    [debounceTime]="options.debounceTime"
+    [editObject]="state.customer"
+    [editableType]="options.editCustomerFormEditableType">
+  </user-management-edit-customer>
+  <user-management-users-table
+    *ngIf="state.customer && state.customer.users"
+    [users]="state.customer.users"
+    [customerId]="customerId"
+    [addTabAction]="options.addTabAction"
+    [addUserAction]="options.addUserAction"
+    [deleteUserAction]="options.deleteUserAction">
+  </user-management-users-table>
+  <user-management-groups-table
+    *ngIf="state.customer && state.customer.groups"
+    [groups]="state.customer.groups"
+    [customerId]="customerId"
+    [addTabAction]="options.addTabAction"
+    [addGroupAction]="options.addGroupAction"
+    [deleteGroupAction]="options.deleteGroupAction">
+  </user-management-groups-table>
+</div>

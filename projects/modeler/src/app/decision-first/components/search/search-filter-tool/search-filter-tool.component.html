@@ -1,0 +1,18 @@
+<div class="form-group" [formGroup]="filterFormGroup">
+  <h6 class="font-weight-bold">{{ 'resources.filter' | translate }} ({{ countSelectedTypeObjects }})</h6>
+  <div class="pt-2 pl-2">
+    <span>{{ 'resources.type' | translate }}</span>
+    <div class="pt-2">
+      <div
+        class="form-check ml-3"
+        formArrayName="typeObjects"
+        *ngFor="let typeObject of getTypeObjectsControls(); let i = index"
+      >
+        <input class="form-check-input" type="checkbox" [id]="typeObjects[i]" [formControlName]="i" />
+        <label class="form-check-label" [for]="typeObject">{{
+          getI18nResourceTypeObject(typeObjects[i]) | translate
+        }}</label>
+      </div>
+    </div>
+  </div>
+</div>

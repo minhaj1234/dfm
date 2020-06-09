@@ -1,0 +1,81 @@
+<nb-card>
+  <div [ngClass]="{'row': !(requirementNetworkExpanded), 'edit-graphable-container': !(requirementNetworkExpanded)}"
+    class="no-margin h-100" *ngIf="state$ | async as state">
+    <div *ngIf="!(requirementNetworkExpanded)" class="jump-menu col-md-3">
+      <dfm-jump-menu [object]="state.inputData" [anchors]="anchors"></dfm-jump-menu>
+    </div>
+    <div class="tab-item center-block"
+      [ngClass]="{'col-10 col-md-6': !(requirementNetworkExpanded), 'decision-tab-table-container': (requirementNetworkExpanded) }">
+      <div class="content-block" [hidden]="(requirementNetworkExpanded)" #basicDetailsAnchor>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon" [hidden]="showBasicDetails"
+            (click)="onClickShowBasicDetails()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon" [hidden]="!showBasicDetails"
+            (click)="onClickShowBasicDetails()"></i>
+          <h5> {{ 'resources.basicDetails' | translate }}</h5>
+        </div>
+        <div [hidden]="!showBasicDetails">
+          <dfm-edit-input-data [editObject]="state.inputData" [isReadOnly]="state.isReadOnlySession">
+          </dfm-edit-input-data>
+          <dfm-relation-objects-display caption="{{ 'resources.organizations' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToInputData"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromInputData" [to]="state.inputData"
+            acceptsType="Organization" relationObjectsKey="organizations" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+        </div>
+      </div>
+
+      <div class="content-block" #requirementAnchor>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon"
+            [hidden]="showDependencies || requirementNetworkExpanded" (click)="onClickShowDependencies()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon"
+            [hidden]="!showDependencies || requirementNetworkExpanded" (click)="onClickShowDependencies()"></i>
+          <h5 [hidden]="requirementNetworkExpanded">{{ 'resources.dependencies' | translate }}</h5>
+        </div>
+        <div [hidden]="!showDependencies">
+          <dfm-graphable-generated-requirements-diagram caption="{{ 'resources.dependencyNetwork' | translate }}"
+            [graphable]="state.inputData" [expanded]="requirementNetworkExpanded" (expand)="expandRequirementNetwork()">
+          </dfm-graphable-generated-requirements-diagram>
+          <dfm-relation-objects-display [hidden]="(requirementNetworkExpanded)"
+            caption="{{ 'resources.diagrams' | translate }}" [to]="state.inputData" acceptsType="Diagram"
+            relationObjectsKey="diagrams" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-graphable-primary-diagram [hidden]="(requirementNetworkExpanded)" [graphable]="state.inputData"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-graphable-primary-diagram>
+          <dfm-relation-objects-display [hidden]="(requirementNetworkExpanded)"
+            caption="{{ 'resources.requiredBy' | translate }} {{ 'resources.decisions' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToInputData"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromInputData" [to]="state.inputData"
+            acceptsType="Decision" relationObjectsKey="requiredByDecisions" [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+          <dfm-relation-objects-display [hidden]="(requirementNetworkExpanded)"
+            caption="{{ 'resources.requiredBy' | translate }} {{ 'resources.knowledgeSources' | translate }}"
+            [addAction]="fromModelerStore.AddRelatedObjectToInputData"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromInputData" [to]="state.inputData"
+            acceptsType="KnowledgeSource" relationObjectsKey="requiredByKnowledgeSources"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-relation-objects-display>
+        </div>
+      </div>
+
+      <div class="content-block" [hidden]="(requirementNetworkExpanded)" #commentsAnchor>
+        <div class="header-block">
+          <i class="eva eva-plus-circle-outline expand-collapse-icon" [hidden]="showComments"
+            (click)="onClickShowComments()"></i>
+          <i class="eva eva-minus-circle-outline expand-collapse-icon" [hidden]="!showComments"
+            (click)="onClickShowComments()"></i>
+          <h5>{{ 'resources.comments' | translate }}</h5>
+        </div>
+        <div [hidden]="!showComments">
+          <dfm-comments-container *ngIf="state.inputData" [addAction]="fromModelerStore.AddRelatedObjectToInputData"
+            [removeAction]="fromModelerStore.RemoveRelatedObjectFromInputData" [object]="state.inputData"
+            [comments]="state.inputData.comments" [authenticatedUser]="state.authenticatedUser"
+            [isReadOnly]="state.isReadOnlySession">
+          </dfm-comments-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</nb-card>

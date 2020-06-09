@@ -1,0 +1,10 @@
+<nb-card>
+  <div class="container admin-container col-md-7 center-block tab-item text-center" *ngIf="state$ | async as state">
+    <user-management-edit-customer-container
+      *ngIf="isAdmin(state.authenticatedUser)"
+      [customerId]="state.authenticatedUser.accountId"
+      [options]="options">
+    </user-management-edit-customer-container>
+    <dfm-admin-all-tags [tags]="state.tags"></dfm-admin-all-tags>
+  </div>
+</nb-card>

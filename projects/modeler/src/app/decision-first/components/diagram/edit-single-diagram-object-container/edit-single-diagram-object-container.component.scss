@@ -1,0 +1,24 @@
+@import '../../../../../assets/css/themes.scss';
+
+.edit-single-diagram-object-container {
+  border-left: 1px solid nb-theme(lt-gray);
+  height: 100%;
+  overflow: auto;
+}
+
+i {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: auto;
+}
+
+.edit-single-diagram-object-title-container {
+  display: flex;
+  overflow: auto;
+  align-items: flex-start;
+  word-break: break-all;
+}
+
+.edit-single-diagram-object-title {
+  font-weight: 600;
+}

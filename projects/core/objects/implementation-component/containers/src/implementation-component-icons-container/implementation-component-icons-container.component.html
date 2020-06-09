@@ -1,0 +1,12 @@
+<nb-card>
+  <div>
+    <div class="container col-md-5 center-block tab-item pt-2" *ngIf="state$ | async as state">
+      <div class="implementation-component-icon-table-toolbar mb-2">
+        <core-upload-implementation-component-icon [displayForm]="state.displayForm">
+        </core-upload-implementation-component-icon>
+      </div>
+      
+      <core-implementation-component-icon-table [icons]="state.icons"></core-implementation-component-icon-table>
+    </div>
+  </div>
+</nb-card>

@@ -1,0 +1,48 @@
+<div class="main" *ngIf="state$ | async as state">
+  <ul class="nav nav-tabs">
+    <li attr.data-action="focus-{{ tab.id }}" class="nav-item" *ngFor="let tab of state.tabs; trackBy: trackByFn" (click)="focusTab($event, tab)">
+      <div class="nav-link nav-link-default" [class.active-default]="state.activeTabId === tab.id">
+        <div class="tab-text-container">
+          <span *ngIf="isTechnicalTab(tab.type); else objectName">{{ getTechnicalTabName(tab.type) | translate }}</span>
+          <ng-template #objectName><span>{{ getObjectName(tab) | async }}</span></ng-template>
+        </div>
+        <i *ngIf="!isHomeTab(tab.type)" attr.data-action="close-{{ tab.id }}" class="nb-close icon" (click)="closeTab($event, tab.id)"></i>
+      </div>
+    </li>
+  </ul>
+  <div class="tab-content tab-content-default">
+    <div class="tab-pane tab-pane-default" *ngFor="let tab of state.tabs; trackBy: trackByFn" [class.active]="state.activeTabId === tab.id">
+      <admin-home-container *ngIf="isHomeTab(tab.type)"></admin-home-container>
+
+      <user-management-edit-customer-container-tab
+        *ngIf="isCustomerTab(tab.type)"
+        [customerId]="tab.id"
+        [options]="editCustomerContainerOptions">
+      </user-management-edit-customer-container-tab>
+      
+      <user-management-edit-user-container
+        *ngIf="isUserTab(tab.type)"
+        [userId]="tab.id"
+        [options]="editUserContainerOptions">
+      </user-management-edit-user-container>
+      
+      <user-management-edit-group-container
+        *ngIf="isGroupTab(tab.type)"
+        [groupId]="tab.id"
+        [options]="editGroupContainerOptions">
+      </user-management-edit-group-container>
+
+      <core-implementation-component-icons-container 
+        *ngIf="isImplementationComponentIconsTab(tab.type)">
+      </core-implementation-component-icons-container>
+
+      <core-edit-implementation-component-icon-container 
+        [iconId]="tab.id"
+        *ngIf="isImplementationComponentIconTab(tab.type)">
+      </core-edit-implementation-component-icon-container>
+      
+      <core-edit-version-information-container *ngIf="isVersionInformationTab(tab.type)">
+      </core-edit-version-information-container>
+    </div>
+  </div>
+</div>

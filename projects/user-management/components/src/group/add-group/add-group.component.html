@@ -1,0 +1,12 @@
+<nb-card>
+  <form [formGroup]="formGroup">
+    <div class="form-group" formGroupName="group">
+      <label for="groupName">Name</label>
+      <core-edit-multiple-lines-control id="name" formControlName="name" [isRichEditor]="false" [maxTextLength]="MaxTextLengthCategory.ShortText"></core-edit-multiple-lines-control>
+    </div>
+
+    <button type="button" class="btn btn-info btn-block" (click)="addObject()" [disabled]="formGroup.invalid">
+      Add Group
+    </button>
+  </form>
+</nb-card>

@@ -31,6 +31,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 dfmprojectscm    DFM-project-PR
 demodfmservicescm  DEMO-service-PR
 
-## Todays date and day
+## Todays date
 
-18 Jun 20202 Thursdy
+18 Jun 20202

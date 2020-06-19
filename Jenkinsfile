@@ -5,7 +5,7 @@ pipeline {
             steps {
                // sh "rm -Rf /var/lib/jenkins/workspace/dfmproject/dfm"
                sh "git clone https://github.com/rxwminhaj/dfm.git"
-               sh "mv /var/lib/jenkins/workspace/dfmproject_dfmproject/dfm/* /var/lib/jenkins/workspace/dfmproject_dfmproject/"
+               sh "cp -rp /var/lib/jenkins/workspace/dfmproject_dfmproject/dfm/* /var/lib/jenkins/workspace/dfmproject_dfmproject/"
                sh "yarn install"
                sh "npm install"
                sh "rm -rf /var/lib/jenkins/workspace/dfmproject_dfmproject/package-lock.json"

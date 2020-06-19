@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('clone repo and build modeler') {
             steps {
-               sh "rm -Rf /var/lib/jenkins/workspace/dfm-project-scm/dfm"
+               sh "rm -Rf /var/lib/jenkins/workspace/dfmproject*/dfm"
                sh "git clone https://github.com/rxwminhaj/dfm.git"
-               sh "mv /var/lib/jenkins/workspace/dfm-project-scm/dfm/* /var/lib/jenkins/workspace/dfm-project-scm/"
+               sh "mv /var/lib/jenkins/workspace/dfmproject*/dfm/* /var/lib/jenkins/workspace/dfmproject*/"
                sh "yarn install"
                sh "npm install"
-               sh "rm -rf /var/lib/jenkins/workspace/dfm-project-scm/package-lock.json"
+               sh "rm -rf /var/lib/jenkins/workspace/dfmproject*/package-lock.json"
                sh "node --max_old_space_size=4098 ./node_modules/@angular/cli/bin/ng build --project core"
                sh "node --max_old_space_size=4098 ./node_modules/@angular/cli/bin/ng build --project user-management"
                sh "node --max_old_space_size=4098 ./node_modules/@angular/cli/bin/ng build --project modeler"

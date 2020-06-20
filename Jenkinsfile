@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage('clone repo and build modeler') {
             steps {
-               // sh "rm -Rf /var/lib/jenkins/workspace/dfmproject/dfm"
                sh "git clone https://github.com/rxwminhaj/dfm.git"
                sh "cp -rp /var/lib/jenkins/workspace/dfmproject_dfmproject/dfm/* /var/lib/jenkins/workspace/dfmproject_dfmproject/"
                sh "yarn install"
